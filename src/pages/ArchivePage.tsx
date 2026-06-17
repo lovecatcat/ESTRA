@@ -13,9 +13,9 @@ export function ArchivePage() {
   return (
     <>
       {/* ====== Hero ====== */}
-      <section className="section relative aspect-[1440/600] bg-[url('/images/main_banner.png')] bg-cover bg-center bg-no-repeat">
+      <section className="section relative aspect-[1440/600] bg-[url('/images/archive_banner.png')] bg-cover bg-center bg-no-repeat">
         {/* 文字 — 右侧 */}
-        <div className="absolute right-0 top-[clamp(150px,14vw,202px)] lg:right-[clamp(48px,8.33vw,120px)] flex flex-col gap-6 lg:pl-[clamp(48px,8.33vw,120px)]">
+        <div className="absolute right-0 top-[clamp(150px,14vw,202px)] md:right-[clamp(48px,8.33vw,120px)] flex flex-col gap-6 md:pl-[clamp(48px,8.33vw,120px)]">
           <div className="flex flex-col gap-2">
             <span className="act-label whitespace-pre-line text-bg-primary">
               {'SO\nARCHIVE\nREACTIVATION'}
@@ -44,34 +44,32 @@ export function ArchivePage() {
 
       {/* ====== Archive Grid ====== */}
       <section className="section py-[clamp(40px,5vw,80px)]">
-        <div className="section-inner lg:px-[clamp(48px,8.33vw,120px)]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[clamp(20px,2vw,40px)]">
+        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[clamp(20px,2vw,40px)]">
             {ARCHIVE_ITEMS.map((item) => (
               <Link
                 key={item.number}
                 to={`/archive/${item.number}`}
-                className="group relative aspect-square border-4 border-accent flex flex-col justify-between p-[clamp(24px,4vw,48px)] hover:bg-accent/10 transition-colors duration-300"
+                className="relative aspect-square border-4 border-accent flex items-start justify-center p-[clamp(24px,4vw,48px)] hover:bg-accent/10 transition-colors duration-300"
               >
                 {/* 序号 */}
-                <div className="flex items-start gap-1">
+                <div className="flex">
                   <span className="text-[clamp(30px,3.5vw,50px)] font-bold text-accent leading-none">#</span>
-                  <span className="text-[clamp(60px,7.6vw,110px)] text-accent leading-none tracking-tighter">
-                    {item.number}
-                  </span>
                 </div>
 
                 {/* 标题 & 描述 */}
-                <div>
-                  <p className="text-[clamp(14px,1.4vw,20px)] text-accent whitespace-nowrap">
+                <div className="flex flex-col">
+                <span className="text-[clamp(60px,7.6vw,110px)] text-accent leading-none tracking-tighter">
+                    {item.number}
+                  </span>
+                  <div className="text-[clamp(14px,1.4vw,20px)] text-accent whitespace-nowrap">
                     {item.title}
-                  </p>
-                  <p className="text-[clamp(8px,0.76vw,11px)] text-accent/60 mt-1">
+                  </div>
+                  <div className="text-[clamp(8px,0.76vw,11px)] text-accent mt-[-2px]">
                     {item.desc}
-                  </p>
-                </div>
-
-                {/* Enter 提示 */}
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  </div>
+                   {/* Enter 提示 */}
+                <div className="flex items-center mt-10">
                   <span className="text-[clamp(6px,0.56vw,8px)] text-accent uppercase tracking-wider">
                     Enter Object Page
                   </span>
@@ -87,6 +85,9 @@ export function ArchivePage() {
                     <path d="M6.5 0.5L10 3.5L6.5 6.5" stroke="currentColor" />
                   </svg>
                 </div>
+                </div>
+
+               
               </Link>
             ))}
           </div>

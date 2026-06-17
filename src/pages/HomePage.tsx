@@ -1,4 +1,6 @@
 
+import { ActLabel } from '../components/ActLabel'
+
 // ---- 数据 ----
 
 const PRINCIPLES = [
@@ -40,15 +42,6 @@ const MANIFESTO = [
   'We build for those who think in decades, not quarters.',
 ]
 
-
-function ActLabel({ children, className = '' }: { children: string; className?: string }) {
-  return (
-    <div className={`flex flex-col gap-2 ${className}`}>
-      <span className="act-label whitespace-pre-line text-accent">{children}</span>
-      <div className="w-[28px] h-px bg-accent" />
-    </div>
-  )
-}
 
 function Hairline({ width = '200px', className = '' }: { width?: string; className?: string }) {
   return <div className={`hairline ${className}`} style={{ maxWidth: width }} />
@@ -118,15 +111,15 @@ function CaseCard({
 }) {
   return (
     <div className="group mb-24 md:mb-32">
-      <div className="mb-[clamp(24px,4.17vw,60px)] grid grid-cols-1   gap-10 lg:pl-[clamp(48px,8.33vw,120px)]">
+      <div className="mb-[clamp(24px,4.17vw,60px)] grid grid-cols-1   gap-10 md:pl-[clamp(48px,8.33vw,120px)]">
         <ActLabel >{actLabel}</ActLabel>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[clamp(48px,8.33vw,120px)] lg:pl-[clamp(48px,8.33vw,120px)] lg:pr-[clamp(48px,8.33vw,120px)] items-end">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[clamp(48px,8.33vw,120px)] md:pl-[clamp(48px,8.33vw,120px)] md:pr-[clamp(48px,8.33vw,120px)] items-end">
         {/* 图片 — 左 */}
-        <div className="relative w-full h-full min-h-[clamp(200px,23.2vw,334px)] rounded-sm overflow-hidden border-4 border-accent  lg:order-1">
+        <div className="relative w-full h-full min-h-[clamp(200px,23.2vw,334px)] rounded-sm overflow-hidden border-4 border-accent  md:order-1">
         </div>
         {/* 文字 — 右 */}
-        <div className="flex flex-col gap-4 order-1 lg:order-2 justify-between h-full">
+        <div className="flex flex-col gap-4 order-1 md:order-2 justify-between h-full">
           <div>
             <h3 className="text-2xl leading-[1.17] text-accent whitespace-pre-line">{title}</h3>
             <Hairline width="550px" className="my-[clamp(8px,1.39vw,20px)] h-[2px]" />
@@ -203,7 +196,7 @@ export function HomePage() {
         </section>
 
         {/* 原则卡片 */}
-        <div className="section-inner grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
+        <div className="section-inner grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0">
           {PRINCIPLES.map((p, i) => (
             <PrincipleCard key={p.title} title={p.title} description={p.description} index={i + 1} />
           ))}
@@ -211,8 +204,8 @@ export function HomePage() {
 
         {/* ====== S3: 对象自述 ====== */}
         <section className="section py-24 md:py-32">
-          <div className="section-inner grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-            <div className="flex flex-col gap-6 lg:pl-[clamp(48px,8.33vw,120px)]">
+          <div className="section-inner grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
+            <div className="flex flex-col gap-6 md:pl-[clamp(48px,8.33vw,120px)]">
               <ActLabel>{'ACT 4\nTHE OBJECT FINDS\nITS PEOPLE'}</ActLabel>
               <h2 className="text-4xl leading-[1.17] text-accent max-w-[clamp(280px,31.8vw,458px)]">
                 The object finds the <span className='text-white font-bold'>people</span>  who were already living by its logic.
@@ -241,17 +234,17 @@ export function HomePage() {
         {/* ====== S5: 文化宣言 ====== */}
         <section className="section ">
           <div className="section-inner">
-            <div className="mb-[clamp(24px,4.17vw,60px)] lg:pl-[clamp(48px,8.33vw,120px)] ">
+            <div className="mb-[clamp(24px,4.17vw,60px)] md:pl-[clamp(48px,8.33vw,120px)] ">
               <ActLabel>{'ACT 4\nTHE CULTURAL\nSTATEMENT'}</ActLabel>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10  items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10  items-start">
               {/* 图片 — 左 */}
-              <div className="order-2 lg:order-1">
+              <div className="order-2 md:order-1">
                 <img src="/images/main_footer.png" alt="" className="w-full" />
               </div>
 
               {/* 宣言文字 — 右 */}
-              <div className="flex flex-col gap-6 order-1 lg:order-2 lg:pr-[clamp(48px,8.33vw,120px)]">
+              <div className="flex flex-col gap-6 order-1 md:order-2 md:pr-[clamp(48px,8.33vw,120px)]">
                 <div className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)] mt-9'>
                   We make objects that carry structure as their primary element and surface as their last decision.
                 </div>

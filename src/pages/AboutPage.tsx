@@ -1,7 +1,7 @@
 export function AboutPage() {
   return (
     <section className="section min-h-screen flex items-center">
-      <div className="section-inner lg:pl-[clamp(48px,8.33vw,120px)]">
+      <div className="section-inner md:pl-[clamp(48px,8.33vw,120px)]">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <span className="act-label whitespace-pre-line text-accent">ABOUT</span>

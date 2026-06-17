@@ -10,7 +10,7 @@ export function Footer() {
         </Link>
         <div className="flex items-center gap-12">
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} to={l.href} className="text-xs tracking-wider text-white hover:text-accent transition-colors duration-200">
+            <Link key={l.href} to={l.href} className="text-xs text-white hover:text-accent transition-colors duration-200">
               {l.label}
             </Link>
           ))}

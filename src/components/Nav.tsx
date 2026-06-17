@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export const NAV_LINKS = [
   { label: 'ARCHIVE', href: '/archive' },
@@ -19,11 +19,21 @@ export function Nav() {
         </Link>
 
         {/* 桌面导航 */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className=" md:flex items-center gap-8">
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} to={l.href} className="text-sm tracking-wider text-white/80 hover:text-accent transition-colors duration-200">
+            <NavLink
+              key={l.href}
+              to={l.href}
+              className={({ isActive }) =>
+                `text-sm leading-4 transition-colors duration-200 border-b ${
+                  isActive
+                    ? 'border-white'
+                    : 'text-white hover:text-accent border-transparent'
+                }`
+              }
+            >
               {l.label}
-            </Link>
+            </NavLink>
           ))}
         </div>
 
@@ -47,14 +57,20 @@ export function Nav() {
       >
         <div className="section-inner py-4 flex flex-col gap-3">
           {NAV_LINKS.map((l) => (
-            <Link
+            <NavLink
               key={l.href}
               to={l.href}
-              className="text-sm tracking-wider text-white/80 hover:text-accent py-2 transition-colors duration-200"
+              className={({ isActive }) =>
+                `text-sm tracking-wider py-2 transition-colors duration-200 border-b-2 ${
+                  isActive
+                    ? 'text-accent border-accent'
+                    : 'text-white/80 hover:text-accent border-transparent'
+                }`
+              }
               onClick={() => setMenuOpen(false)}
             >
               {l.label}
-            </Link>
+            </NavLink>
           ))}
         </div>
       </div>
