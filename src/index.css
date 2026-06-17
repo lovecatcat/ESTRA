@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== ESTRA 设计系统 — 全局样式 ===== */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg-primary text-white font-sans;
+    min-height: 100vh;
+  }
+
+  /* 文字选色 */
+  ::selection {
+    background: rgba(221, 212, 193, 0.25);
+    color: #DDD4C1;
+  }
+}
+
+@layer components {
+  /* 区块容器 */
+  .section {
+    @apply relative w-full overflow-hidden;
+  }
+
+  .section-inner {
+    @apply mx-auto w-full max-w-[1440px] px-6 md:px-10 lg:px-20;
+  }
+
+  /* Act 标签 */
+  .act-label {
+    @apply text-act-label uppercase tracking-widest text-accent-muted;
+  }
+
+  /* 装饰线 */
+  .hairline {
+    @apply h-px bg-accent/20 w-full;
+  }
+}
+
+@layer utilities {
+  /* 文字层级 */
+  .text-warm {
+    color: #DDD4C1;
+  }
+  .text-dim {
+    color: #A9A294;
+  }
+
+  /* 渐变遮罩 */
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}
