@@ -36,7 +36,7 @@
   }
 
   .section-inner {
-    @apply mx-auto w-full max-w-[1440px] px-6 md:px-10 lg:px-20;
+    @apply mx-auto w-full ;
   }
 
   /* Act 标签 */
@@ -46,7 +46,7 @@
 
   /* 装饰线 */
   .hairline {
-    @apply h-px bg-accent/20 w-full;
+    @apply h-px bg-accent w-full;
   }
 }
 
