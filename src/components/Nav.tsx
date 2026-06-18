@@ -13,13 +13,13 @@ export function Nav() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-nav bg-bg-primary/90 backdrop-blur-sm border-b border-border">
-      <div className="section-inner flex items-center justify-between h-full px-20">
-        <Link to="/" className="text-2xl font-medium text-white tracking-wide hover:text-accent transition-colors duration-300">
+      <div className="section-inner flex items-center justify-between h-full px-[clamp(16px,4vw,80px)]">
+        <Link to="/" className="text-[clamp(18px,1.67vw,24px)] font-medium text-white tracking-wide hover:text-accent transition-colors duration-300">
           ESTRA
         </Link>
 
-        {/* 桌面导航 */}
-        <div className=" md:flex items-center gap-8">
+        {/* 导航链接 — 仅桌面端显示 */}
+        <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((l) => (
             <NavLink
               key={l.href}
@@ -49,13 +49,13 @@ export function Nav() {
         </button>
       </div>
 
-      {/* 移动端菜单 */}
+      {/* 移动端下拉菜单 */}
       <div
         className={`md:hidden absolute top-nav left-0 right-0 bg-bg-elevated border-b border-border overflow-hidden transition-all duration-300 ${
           menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="section-inner py-4 flex flex-col gap-3">
+        <div className="section-inner py-4 flex flex-col gap-3 px-[clamp(16px,4vw,80px)]">
           {NAV_LINKS.map((l) => (
             <NavLink
               key={l.href}

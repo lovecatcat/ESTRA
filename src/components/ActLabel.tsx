@@ -18,8 +18,8 @@ export function ActLabel({ children, className = '', color = 'accent' }: ActLabe
   const c = colorClasses[color]
 
   return (
-    <div className={`flex flex-col gap-2 ${className}`}>
-      <span className={`act-label whitespace-pre-line ${c.text}`}>{children}</span>
+    <div className={`flex flex-col gap-2 items-center md:items-start ${className}`}>
+      <span className={`act-label whitespace-pre-line text-center md:text-left ${c.text}`}>{children}</span>
       <div className={`w-[28px] h-px ${c.bg}`} />
     </div>
   )

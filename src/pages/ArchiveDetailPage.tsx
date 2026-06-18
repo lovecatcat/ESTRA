@@ -20,7 +20,9 @@ const EVIDENCE = [
 // ================================================================
 export function ArchiveDetailPage() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
 
   const handleVideoToggle = () => {
     const video = videoRef.current
@@ -39,19 +41,41 @@ export function ArchiveDetailPage() {
     setIsPlaying(false)
   }
 
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const el = imageRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    const dx = (e.clientX - centerX) / (rect.width / 2)
+    const dy = (e.clientY - centerY) / (rect.height / 2)
+    setTilt({ x: dy * -12, y: dx * 12 })
+  }
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 })
+  }
+
   return (
     <>
       {/* ====== Hero ====== */}
-      <section className="section relative min-h-[clamp(400px,41.7vw,600px)] bg-gradient-to-br from-[#282827] via-[#47494a] to-[#6a7275] flex items-center">
-        {/* 左侧图片占位 */}
-        <div className="absolute left-[clamp(60px,14.8vw,214px)] top-1/2 -translate-y-1/2 w-[clamp(240px,40vw,580px)] aspect-square rounded-full bg-accent/5" />
+      <section className="section relative min-h-[clamp(400px,41.7vw,600px)] bg-[linear-gradient(262deg,#282827_23.07%,#47494A_54.86%,#6F6F6F_66.75%,#6A7275_98.07%)] flex items-center overflow-visible">
+        <div
+          ref={imageRef}
+          className="absolute left-[clamp(60px,14.8vw,214px)]  translate-y-[10%] w-[clamp(240px,40vw,580px)] aspect-square "
+          style={{ perspective: '800px' }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          <img src="/images/archive_detail.png" alt="" />
+        </div>
 
         {/* 右侧文字 */}
         <div className="section-inner relative">
-          <div className="ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col gap-6 max-w-[clamp(280px,23vw,334px)]">
+          <div className="mx-auto md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-center md:items-start text-center md:text-left max-w-[clamp(280px,23vw,334px)]">
             <ActLabel>{'001\nOBJECT\nIDENTITY'}</ActLabel>
 
-            <h1 className="text-[clamp(36px,3.96vw,57px)] font-bold leading-[1.08] text-accent">
+            <h1 className="text-[clamp(36px,3.96vw,57px)] my-6 font-bold leading-[1.08] text-accent">
               The Vertebra
             </h1>
 
@@ -59,7 +83,7 @@ export function ArchiveDetailPage() {
               The first Tectonic Object.
             </p>
 
-            <p className="text-[clamp(14px,1.46vw,21px)] leading-[1.17] text-accent/60">
+            <p className="text-[clamp(14px,1.46vw,21px)] leading-[1.17] text-accent">
               Introduced 2026
             </p>
           </div>
@@ -127,7 +151,7 @@ export function ArchiveDetailPage() {
             {!isPlaying && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
                 <div className="w-[clamp(80px,11vw,160px)] h-[clamp(80px,11vw,160px)] rounded-full border-2 border-accent flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <svg width="40%" height="40%" viewBox="0 0 160 160" fill="none">
+                  <svg width="60%" height="60%" viewBox="0 0 160 160" fill="none">
                     <polygon points="65,48 65,112 115,80" fill="#DDD4C1" />
                   </svg>
                 </div>
@@ -143,10 +167,10 @@ export function ArchiveDetailPage() {
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S4\nEVIDENCE\nOF STRUCTURE'}</ActLabel>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[clamp(16px,2vw,32px)]">
-            {EVIDENCE.map((item) => (
+            {EVIDENCE.map((item, index) => (
               <div key={item.title} className="flex flex-col items-center text-center gap-[clamp(12px,1.5vw,24px)]">
                 <div className="w-full aspect-square border-4 border-accent bg-bg-card flex items-center justify-center">
-                  <span className="text-accent/20 text-[clamp(18px,2vw,29px)]">+</span>
+                  <img src={`/images/main_principleCard_${index + 1}.png`} alt="" className="w-full" />
                 </div>
                 <p className="text-[clamp(20px,2vw,29px)] text-accent whitespace-pre-line leading-[1.17]">
                   {item.title}

@@ -90,7 +90,7 @@ function PrincipleCard({ title, description, index }: { title: string; descripti
         <h3 className="text-[clamp(26px,2.5vw,36px)] leading-[1.17] text-accent whitespace-pre-line ">
           {title}
         </h3>
-        <p className="text-lg leading-[1.17] text-accent whitespace-pre-line max-w-[clamp(120px,13.9vw,200px)] ">
+        <p className="text-[clamp(13px,1.25vw,18px)] leading-[1.17] text-accent whitespace-pre-line max-w-[clamp(120px,13.9vw,200px)] ">
           {description}
         </p>
       </div>
@@ -111,25 +111,25 @@ function CaseCard({
 }) {
   return (
     <div className="group mb-24 md:mb-32">
-      <div className="mb-[clamp(24px,4.17vw,60px)] grid grid-cols-1   gap-10 md:pl-[clamp(48px,8.33vw,120px)]">
-        <ActLabel >{actLabel}</ActLabel>
+      <div className="mb-[clamp(24px,4.17vw,60px)] flex justify-center md:justify-start md:pl-[clamp(48px,8.33vw,120px)]">
+        <ActLabel>{actLabel}</ActLabel>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[clamp(48px,8.33vw,120px)] md:pl-[clamp(48px,8.33vw,120px)] md:pr-[clamp(48px,8.33vw,120px)] items-end">
         {/* 图片 — 左 */}
-        <div className="relative w-full h-full min-h-[clamp(200px,23.2vw,334px)] rounded-sm overflow-hidden border-4 border-accent  md:order-1">
+        <div className="relative w-full h-full min-h-[clamp(200px,23.2vw,334px)] rounded-sm overflow-hidden border-4 border-accent md:order-1">
         </div>
         {/* 文字 — 右 */}
-        <div className="flex flex-col gap-4 order-1 md:order-2 justify-between h-full">
+        <div className="flex flex-col gap-4 order-1 md:order-2 justify-between h-full items-center md:items-start text-center md:text-left">
           <div>
-            <h3 className="text-2xl leading-[1.17] text-accent whitespace-pre-line">{title}</h3>
+            <h3 className="text-[clamp(18px,1.67vw,24px)] leading-[1.17] text-accent whitespace-pre-line">{title}</h3>
             <Hairline width="550px" className="my-[clamp(8px,1.39vw,20px)] h-[2px]" />
-            <h4 className="text-[clamp(32px,3.06vw,44px)] leading-[1.17] text-accent whitespace-pre-line">
+            <h4 className="text-[clamp(24px,3.06vw,44px)] leading-[1.17] text-accent whitespace-pre-line">
               {quote}
             </h4>
           </div>
 
           <a className="flex items-center gap-2 w-fit" href="#">
-            <span className="text-2xl leading-[1.17] text-accent whitespace-pre-line" >View story</span>
+            <span className="text-[clamp(18px,1.67vw,24px)] leading-[1.17] text-accent whitespace-pre-line">View story</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="15" viewBox="0 0 22 15" fill="none">
               <line y1="6.95117" x2="20.8203" y2="6.95117" stroke="#DDD4C1" />
               <path d="M15.0059 0.325195L20.6641 6.92505L15.0059 13.9962" stroke="#DDD4C1" />
@@ -151,21 +151,21 @@ export function HomePage() {
         {/* ====== S1: Hero ====== */}
         <section
           className="section aspect-[1440/730] relative bg-[url('/images/main_banner.png')] bg-cover bg-center bg-no-repeat">
-          <div className="section-inner relative h-full">
-            <div className="absolute right-[clamp(48px,8.33vw,120px)] top-1/2 -translate-y-1/2 flex flex-col justify-center gap-6">
+          <div className="section-inner relative h-full flex items-center">
+            <div className="mx-auto md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-center md:items-start text-center md:text-left gap-6">
               <ActLabel>{'ACT 1\nOPENING'}</ActLabel>
-              <h1 className="text-5xl text-accent leading-[1.08] ">
+              <h1 className="text-[clamp(32px,3.47vw,50px)] text-accent leading-[1.08] ">
                 <span className="text-white relative inline-block before:absolute before:bottom-2 before:left-0 before:w-full before:h-0.5 before:bg-white before:translate-y-1">Structure</span>  is
                 <br />
                 the argument.
               </h1>
-              <p className="text-2xl text-[#E7DECB] leading-[1.08] ">
+              <p className="text-[clamp(16px,1.67vw,24px)] text-[#E7DECB] leading-[1.08] ">
                 The frame first.
                 <br />
                 That is the discipline.
               </p>
 
-              <p className="text-2xl text-[#E7DECB] leading-[1.08] ">
+              <p className="text-[clamp(16px,1.67vw,24px)] text-[#E7DECB] leading-[1.08] ">
                 The first proof of a
                 <br />
                 Tectonic Object.
@@ -185,10 +185,10 @@ export function HomePage() {
 
           {/* 文字居中 */}
           <div className="w-full flex flex-col items-center justify-center text-center px-6 py-8 bg-black/50">
-            <h2 className="text-accent text-5xl">
+            <h2 className="text-accent text-[clamp(24px,3.47vw,50px)] leading-[1.08]">
               This is not <span className="text-white font-bold line-through">heavy</span>. This is dense.
             </h2>
-            <p className="text-2xl leading-[1.17] text-accent mt-4">
+            <p className="text-[clamp(14px,1.67vw,24px)] leading-[1.17] text-accent mt-4">
               Density is presence — an object that carries its own reasons for being.
               Every gram is a decision. You can feel the difference.
             </p>
@@ -203,14 +203,14 @@ export function HomePage() {
         </div>
 
         {/* ====== S3: 对象自述 ====== */}
-        <section className="section py-24 md:py-32">
+        <section className="section py-[clamp(48px,5vw,80px)] md:py-[clamp(80px,8vw,128px)]">
           <div className="section-inner grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
-            <div className="flex flex-col gap-6 md:pl-[clamp(48px,8.33vw,120px)]">
+            <div className="flex flex-col gap-6 md:pl-[clamp(48px,8.33vw,120px)] items-center md:items-start text-center md:text-left">
               <ActLabel>{'ACT 4\nTHE OBJECT FINDS\nITS PEOPLE'}</ActLabel>
-              <h2 className="text-4xl leading-[1.17] text-accent max-w-[clamp(280px,31.8vw,458px)]">
+              <h2 className="text-[clamp(24px,2.8vw,40px)] leading-[1.17] text-accent max-w-[clamp(280px,31.8vw,458px)]">
                 The object finds the <span className='text-white font-bold'>people</span>  who were already living by its logic.
               </h2>
-              <p className="text-4xl leading-[1.17] text-accent max-w-[clamp(220px,25.35vw,365px)]">
+              <p className="text-[clamp(24px,2.8vw,40px)] leading-[1.17] text-accent max-w-[clamp(220px,25.35vw,365px)]">
                 This is not marketing. This is recognition.
               </p>
             </div>
@@ -234,7 +234,7 @@ export function HomePage() {
         {/* ====== S5: 文化宣言 ====== */}
         <section className="section ">
           <div className="section-inner">
-            <div className="mb-[clamp(24px,4.17vw,60px)] md:pl-[clamp(48px,8.33vw,120px)] ">
+            <div className="mb-[clamp(24px,4.17vw,60px)] flex justify-center md:justify-start md:pl-[clamp(48px,8.33vw,120px)]">
               <ActLabel>{'ACT 4\nTHE CULTURAL\nSTATEMENT'}</ActLabel>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10  items-start">
@@ -244,7 +244,7 @@ export function HomePage() {
               </div>
 
               {/* 宣言文字 — 右 */}
-              <div className="flex flex-col gap-6 order-1 md:order-2 md:pr-[clamp(48px,8.33vw,120px)]">
+              <div className="flex flex-col gap-6 order-1 md:order-2 md:pr-[clamp(48px,8.33vw,120px)] items-center md:items-start text-center md:text-left">
                 <div className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)] mt-9'>
                   We make objects that carry structure as their primary element and surface as their last decision.
                 </div>

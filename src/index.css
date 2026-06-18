@@ -36,7 +36,7 @@
   }
 
   .section-inner {
-    @apply mx-auto w-full ;
+    @apply mx-auto w-full px-[clamp(12px,3vw,16px)] md:px-0;
   }
 
   /* Act 标签 */
