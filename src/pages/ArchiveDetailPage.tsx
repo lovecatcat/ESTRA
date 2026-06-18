@@ -116,7 +116,7 @@ export function ArchiveDetailPage() {
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S2\nOBJECT\nSTATEMENT'}</ActLabel>
 
-          <div className="text-[clamp(24px,2.9vw,42px)] leading-[1.17] text-accent max-w-[clamp(280px,83vw,1200px)] ">
+          <div className="text-[clamp(24px,2.9vw,42px)] leading-[1.17] text-accent ">
             <p>
               The{' '}
               <span className="font-medium text-white">Vertebra</span>
@@ -134,7 +134,7 @@ export function ArchiveDetailPage() {
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S3\nA CLOSER\nLOOK'}</ActLabel>
 
           <div
-            className="relative aspect-[16/9] max-h-[clamp(340px,47vw,678px)] bg-black border-4 border-accent overflow-hidden group cursor-pointer"
+            className="relative aspect-[16/9] bg-black border-4 border-accent overflow-hidden group cursor-pointer"
             onClick={handleVideoToggle}
           >
             <video

@@ -34,14 +34,14 @@ export function ContactPage() {
 
       <section className="section ">
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)] mt-[clamp(36px,3vw,48px)]">
-          <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-[clamp(280px,83vw,1200px)] mx-auto md:mx-0">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left mx-auto md:mx-0">
             <ActLabel>{'S1\nCOMPANY\nSTATEMENT'}</ActLabel>
 
             <h1 className="text-[clamp(32px,2.9vw,42px)] mt-[clamp(36px,4vw,50px)] font-medium leading-[1.17] text-white">
               Let&rsquo;s work together
             </h1>
 
-            <p className="text-[clamp(14px,1.39vw,20px)] leading-[1.17] text-accent mt-4 max-w-[clamp(280px,55vw,800px)]">
+            <p className="text-[clamp(14px,1.39vw,20px)] leading-[1.17] text-accent mt-4">
               Interested in working together? Fill out some info and we will be in touch shortly! We can&rsquo;t wait to hear from you!
             </p>
           </div>

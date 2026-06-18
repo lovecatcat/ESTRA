@@ -93,7 +93,7 @@ export function WorkPage() {
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S1\nCOMPANY\nSTATEMENT'}</ActLabel>
 
-          <p className="text-[clamp(24px,2.9vw,42px)] leading-[1.17] text-accent max-w-[clamp(280px,83vw,1200px)] text-center md:text-left">
+          <p className="text-[clamp(24px,2.9vw,42px)] leading-[1.17] text-accent text-center md:text-left">
             {STATEMENT}
           </p>
         </div>
