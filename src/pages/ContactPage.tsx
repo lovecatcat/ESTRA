@@ -59,7 +59,7 @@ export function ContactPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(16px,1.5vw,24px)]">
               <label className="flex flex-col gap-2">
                 <span className="flex items-baseline gap-2 text-accent text-[clamp(14px,1.39vw,20px)] font-medium">
-                  First name
+                  Name
                 </span>
                 <input
                   type="text"

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { ActLabel } from '../components/ActLabel'
+import { VideoPlayer } from '../components/VideoPlayer'
 
 // ---- 数据 ----
 const SPECS = [
@@ -19,27 +20,8 @@ const EVIDENCE = [
 
 // ================================================================
 export function ArchiveDetailPage() {
-  const videoRef = useRef<HTMLVideoElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
-
-  const handleVideoToggle = () => {
-    const video = videoRef.current
-    if (!video) return
-
-    if (video.paused) {
-      video.play()
-      setIsPlaying(true)
-    } else {
-      video.pause()
-      setIsPlaying(false)
-    }
-  }
-
-  const handleVideoEnded = () => {
-    setIsPlaying(false)
-  }
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const el = imageRef.current
@@ -95,7 +77,7 @@ export function ArchiveDetailPage() {
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
           <ActLabel className="mb-[clamp(48px,5vw,80px)]">{'S1\nCONTEXT\nSTRIP'}</ActLabel>
 
-          <div className="flex flex-wrap md:flex-nowrap divide-y md:divide-y-0 md:divide-x text-white mx-[-30px]">
+          <div className="flex flex-wrap md:flex-nowrap divide-y md:divide-y-0 md:divide-x text-white ">
             {SPECS.map((spec, idx) => (
               <div key={spec.label}
                 className={`flex-1 flex flex-col justify-center py-[clamp(16px,2vw,24px)] md:py-0 md:px-[clamp(16px,2vw,32px)] first:pt-0 last:pb-0 first:md:pl-0 last:md:pr-0 text-center`} >
@@ -133,31 +115,10 @@ export function ArchiveDetailPage() {
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S3\nA CLOSER\nLOOK'}</ActLabel>
 
-          <div
-            className="relative aspect-[16/9] bg-black border-4 border-accent overflow-hidden group cursor-pointer"
-            onClick={handleVideoToggle}
-          >
-            <video
-              ref={videoRef}
-              className="w-full h-full object-cover"
-              src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4"
-              poster="/images/archive_banner.png"
-              playsInline
-              preload="metadata"
-              onEnded={handleVideoEnded}
-            />
-
-            {/* 自定义播放按钮覆盖层 */}
-            {!isPlaying && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
-                <div className="w-[clamp(80px,11vw,160px)] h-[clamp(80px,11vw,160px)] rounded-full border-2 border-accent flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <svg width="60%" height="60%" viewBox="0 0 160 160" fill="none">
-                    <polygon points="65,48 65,112 115,80" fill="#DDD4C1" />
-                  </svg>
-                </div>
-              </div>
-            )}
-          </div>
+          <VideoPlayer
+            src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4"
+            poster="/images/archive_detail_video.png"
+          />
         </div>
       </section>
 
