@@ -40,6 +40,7 @@ const MANIFESTO = [
   'We work slowly so the object can remain honest.',
   'We exist outside trends, outside seasons, outside commerce cycles.',
   'We build for those who think in decades, not quarters.',
+  'This is not a brand. This is a position. This is not decoration. This is structure made visible.'
 ]
 
 
@@ -237,7 +238,7 @@ export function HomePage() {
             <div className="mb-[clamp(24px,4.17vw,60px)] flex justify-center md:justify-start md:pl-[clamp(48px,8.33vw,120px)]">
               <ActLabel>{'ACT 4\nTHE CULTURAL\nSTATEMENT'}</ActLabel>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10  items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2">
               {/* 图片 — 左 */}
               <div className="order-2 md:order-1">
                 <img src="/images/main_footer.png" alt="" className="w-full" />
@@ -245,25 +246,26 @@ export function HomePage() {
 
               {/* 宣言文字 — 右 */}
               <div className="flex flex-col gap-6 order-1 md:order-2 md:pr-[clamp(48px,8.33vw,120px)] items-center md:items-start text-center md:text-left">
-                <div className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)] mt-9'>
+                <div className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)] mt-[clamp(16px,1.53vw,24px)]'>
                   We make objects that carry structure as their primary element and surface as their last decision.
                 </div>
-                {MANIFESTO.map((line, i) => (
-                  <div key={i} className="flex items-start gap-3 group">
-                    <div className={`mt-[0.55em] w-10 md:w-16 h-px bg-accent shrink-0 `} />
-                    <p
-                      className={`text-accent leading-[1.17] ${i === 0
-                          ? 'text-[clamp(16px,1.53vw,22px)]'
-                          : 'text-[clamp(14px,1.32vw,19px)]'
-                        }`}
-                    >
-                      {line}
-                    </p>
-                  </div>
-                ))}
-                <div className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)]'>
-                  This is not a brand. This is a position. This is not decoration. This is structure made visible.
-                </div>
+                {MANIFESTO.map((line, i) => {
+                  const isLast = i === MANIFESTO.length - 1
+                  return (
+                    <div key={i} className="flex items-start gap-3 group">
+                      <div className={`mt-[0.55em] w-10 md:w-16 h-px shrink-0 ${isLast ? 'bg-transparent' : 'bg-accent'}`} />
+                      <p
+                        className={`text-accent leading-[1.17] ${i === 0
+                            ? 'text-[clamp(16px,1.53vw,22px)]'
+                            : 'text-[clamp(14px,1.32vw,19px)]'
+                          }`}
+                      >
+                        {line}
+                      </p>
+                    </div>
+                  )
+                })}
+              
               </div>
             </div>
           </div>
