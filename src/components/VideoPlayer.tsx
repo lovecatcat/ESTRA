@@ -29,7 +29,7 @@ export function VideoPlayer({ src, poster, className = '' }: VideoPlayerProps) {
 
   return (
     <div
-      className={`relative aspect-[16/9] max-h-[clamp(340px,47vw,678px)] bg-black border-4 border-accent overflow-hidden group cursor-pointer ${className}`}
+      className={`relative aspect-[16/9] bg-black border-4 border-accent overflow-hidden group cursor-pointer ${className}`}
       onClick={handleToggle}
     >
       <video
