@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
 import { ActLabel } from '../components/ActLabel'
 import { VideoPlayer } from '../components/VideoPlayer'
+import { ARCHIVE_ITEMS } from '../data/archive'
 
 // ---- 数据 ----
 const SPECS = [
@@ -20,6 +22,7 @@ const EVIDENCE = [
 
 // ================================================================
 export function ArchiveDetailPage() {
+  const { id } = useParams()
   const imageRef = useRef<HTMLDivElement>(null)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
 
@@ -77,7 +80,7 @@ export function ArchiveDetailPage() {
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
           <ActLabel className="mb-[clamp(48px,5vw,80px)]">{'S1\nCONTEXT\nSTRIP'}</ActLabel>
 
-          <div className="flex flex-wrap md:flex-nowrap divide-y md:divide-y-0 md:divide-x text-white ">
+          <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x text-white">
             {SPECS.map((spec, idx) => (
               <div key={spec.label}
                 className={`flex-1 flex flex-col justify-center py-[clamp(16px,2vw,24px)] md:py-0 md:px-[clamp(16px,2vw,32px)] first:pt-0 last:pb-0 first:md:pl-0 last:md:pr-0 text-center`} >
@@ -98,7 +101,7 @@ export function ArchiveDetailPage() {
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S2\nOBJECT\nSTATEMENT'}</ActLabel>
 
-          <div className="text-[clamp(24px,2.9vw,42px)] leading-[1.17] text-accent ">
+          <div className="text-[clamp(24px,2.9vw,42px)] leading-[1.17] text-accent text-center md:text-left">
             <p>
               The{' '}
               <span className="font-medium text-white">Vertebra</span>
@@ -123,7 +126,7 @@ export function ArchiveDetailPage() {
       </section>
 
       {/* ====== S4: Evidence of Structure ====== */}
-      <section className="section py-[clamp(48px,5vw,80px)] mb-[clamp(48px,5vw,80px)]">
+      <section className="section py-[clamp(48px,5vw,80px)]">
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S4\nEVIDENCE\nOF STRUCTURE'}</ActLabel>
 
@@ -136,10 +139,115 @@ export function ArchiveDetailPage() {
                 <p className="text-[clamp(20px,2vw,29px)] text-accent whitespace-pre-line leading-[1.17]">
                   {item.title}
                 </p>
-                <p className="text-[clamp(11px,1.1vw,16px)] text-accent/60 whitespace-pre-line leading-[1.17]">
+                <p className="text-[clamp(11px,1.1vw,16px)] text-accent whitespace-pre-line leading-[1.17]">
                   {item.desc}
                 </p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ====== S5: Specifications & Configuration ====== */}
+      <section className="section py-[clamp(48px,5vw,80px)]">
+        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+          <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S5\nSPECS &\nCONFIG'}</ActLabel>
+
+          {/* PC 左右 / 手机 上下 */}
+          <div className="flex flex-col md:flex-row gap-[clamp(32px,4vw,64px)]">
+            {/* 左栏 — Specifications */}
+            <div className="flex-1">
+              <p className="text-[clamp(18px,1.8vw,26px)] font-medium text-accent mb-[clamp(20px,2vw,32px)] text-center md:text-left">
+                Specifications
+              </p>
+              <table className="w-full border-collapse">
+                <tbody>
+                  {[
+                    ['Dimensions', '[L × W × H — mm / in]'],
+                    ['Weight', '[grams / oz]'],
+                    ['Frame material', '[Material specification]'],
+                    ['Covering material', '[Leather type specification]'],
+                    ['Closure mechanism', '[Mechanism type]'],
+                    ['Interior', '[Interior specification]'],
+                  ].map(([label, value]) => (
+                    <tr key={label} className="border-b border-white/20">
+                      <td className="py-[clamp(10px,1vw,16px)] pr-[clamp(16px,2vw,32px)] text-xs text-accent/60 align-top text-center md:text-left">
+                        {label}
+                      </td>
+                      <td className="py-[clamp(10px,1vw,16px)] text-xs text-accent align-top text-center md:text-left">
+                        {value}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* 右栏 — Configuration */}
+            <div className="flex-1">
+              <p className="text-[clamp(18px,1.8vw,26px)] font-medium text-accent mb-[clamp(20px,2vw,32px)] text-center md:text-left">
+                Configuration
+              </p>
+              <table className="w-full border-collapse">
+                <tbody>
+                  {[
+                    ['Standard configuration', 'Object 001 in [finish name]. Single unit.'],
+                    ['Includes', '[Ships with object]'],
+                    ['Does not include', '[Commonly expected items not included]'],
+                    ['Finish / colourway', '[Options or single option]'],
+                    ['Release state', 'First production · Limited allocation'],
+                    ['Pending fields', 'Subject to final production confirmation'],
+                  ].map(([label, value]) => (
+                    <tr key={label} className="border-b border-white/20">
+                      <td className="py-[clamp(10px,1vw,16px)] pr-[clamp(16px,2vw,32px)] text-xs text-accent/60 align-top text-center md:text-left">
+                        {label}
+                      </td>
+                      <td className="py-[clamp(10px,1vw,16px)] text-xs text-accent align-top text-center md:text-left">
+                        {value}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Order 按钮 */}
+          <div className="mt-[clamp(36px,4vw,56px)] flex justify-center">
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 px-[clamp(32px,4vw,56px)] py-[clamp(14px,1.5vw,20px)] border border-accent text-[clamp(14px,1.2vw,18px)] text-accent font-medium hover:bg-accent hover:text-bg-primary transition-colors duration-300"
+            >
+              Order The Vertebra
+              <svg width="12" height="9" viewBox="0 0 10 7" fill="none">
+                <path d="M6.5 1L9.5 3.5L6.5 6" stroke="currentColor" strokeWidth="1" />
+                <line x1="0" y1="3.5" x2="9" y2="3.5" stroke="currentColor" strokeWidth="1" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== Bottom Navigation ====== */}
+      <section className="section py-[clamp(48px,5vw,80px)]">
+        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+          <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'OBJECT\nINDEX'}</ActLabel>
+
+          <div className="flex flex-wrap gap-[clamp(12px,3vw,48px)]">
+            {ARCHIVE_ITEMS.filter((item) => item.number !== id).map((item) => (
+              <Link
+                key={item.number}
+                to={`/archive/${item.number}`}
+                className="flex items-center gap-1 hover:bg-accent/5 transition-colors duration-300"
+              >
+                <span className="text-sm text-accent leading-none tracking-tighter">
+                  {item.number}
+                </span>
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" >
+                  <path d="M6.5 1L9.5 3.5L6.5 6" stroke="#DDD4C1" strokeWidth="1" />
+                  <line x1="0" y1="3.5" x2="9" y2="3.5" stroke="#DDD4C1" strokeWidth="1" />
+                </svg>
+              </Link>
             ))}
           </div>
         </div>

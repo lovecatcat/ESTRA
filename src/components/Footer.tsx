@@ -3,6 +3,7 @@ export const NAV_LINKS = [
   { label: 'Legal/Privacy', href: '/' },
   { label: 'Shipping/Returns', href: '/' },
   { label: 'Care&Service', href: '/' },
+  { label: 'Contact', href: '/contact' },
 ] as const
 
 export function Footer() {

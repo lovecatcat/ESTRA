@@ -257,10 +257,7 @@ export function HomePage() {
                     <div key={i} className="flex items-start gap-3 group">
                       <div className={`mt-[0.55em] w-10 md:w-16 h-px shrink-0 ${isLast ? 'bg-transparent' : 'bg-accent'}`} />
                       <p
-                        className={`text-accent leading-[1.17] ${i === 0
-                            ? 'text-[clamp(16px,1.53vw,22px)]'
-                            : 'text-[clamp(14px,1.32vw,19px)]'
-                          }`}
+                        className={`text-accent text-sm`}
                       >
                         {line}
                       </p>
@@ -275,17 +272,18 @@ export function HomePage() {
 
         <section className="section">
           <div className="section-inner ">
-            <div className='grid grid-cols-1 md:grid-cols-2 py-[clamp(48px,5vw,80px)] md:pl-[clamp(48px,8.33vw,120px)] '>
+            <div className='flex justify-between py-[clamp(48px,5vw,80px)] md:px-[clamp(48px,8.33vw,120px)] '>
                 <Link to="/archive" className=' '>
                   <p className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)]'>The Vertebra</p>
-                  <div>First proof of a Tectonic Object. Indicative price and availability.</div>
+                  <div className='text-sm'>First proof of a Tectonic Object. Indicative price and availability.</div>
                 </Link>
+                <div>
                 <Link to="/work" className=' '>
-                  <p className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)]'>The Work</p>
-                  <div>
-                  The argument behind the object.
-                  </div>
+                  <p className='text-accent leading-[1.17] text-base'>The Work</p>
+                  <div className='text-sm'>The argument behind the object.</div>
                 </Link>
+                </div>
+               
             </div>
                 
           </div>

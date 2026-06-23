@@ -1,14 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ActLabel } from '../components/ActLabel'
-
-const ARCHIVE_ITEMS = [
-  { number: '001', title: 'THE VERTEBRA', desc: 'The first Tectonic Object.', status: 'active' },
-  { number: '002', title: 'IN DEVELOPMENT', desc: 'The first Tectonic Object.', status: 'pending' },
-  { number: '003', title: 'RESERVED', desc: 'The first Tectonic Object.', status: 'reserved' },
-  { number: '004', title: 'MINIMAL CONTEXT', desc: 'The first Tectonic Object.', status: 'active' },
-  { number: '005', title: 'IN DEVELOPMENT', desc: 'The first Tectonic Object.', status: 'pending' },
-  { number: '006', title: 'RESERVED', desc: 'The first Tectonic Object.', status: 'reserved' },
-]
+import { ARCHIVE_ITEMS } from '../data/archive'
 
 export function ArchivePage() {
   return (

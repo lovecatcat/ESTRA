@@ -50,7 +50,7 @@ export function WorkDetailPage() {
         <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
           <ActLabel className="mb-[clamp(48px,5vw,80px)]">{'S1\nCONTEXT\nSTRIP'}</ActLabel>
 
-          <div className="flex flex-wrap md:flex-nowrap divide-y md:divide-y-0 md:divide-x divide-accent mx-[-30px]">
+          <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x text-white">
             {SPECS.map((spec) => (
               <div key={spec.label}
                 className="flex-1 flex flex-col items-center justify-center py-[clamp(16px,2vw,24px)] md:py-0 md:px-[clamp(16px,2vw,32px)] first:pt-0 last:pb-0 text-center"
