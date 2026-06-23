@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
-import { NAV_LINKS } from './Nav'
+export const NAV_LINKS = [
+  { label: 'Legal/Privacy', href: '/' },
+  { label: 'Shipping/Returns', href: '/' },
+  { label: 'Care&Service', href: '/' },
+] as const
 
 export function Footer() {
   return (

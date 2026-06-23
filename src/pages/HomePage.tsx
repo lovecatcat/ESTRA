@@ -1,6 +1,6 @@
 
 import { ActLabel } from '../components/ActLabel'
-
+import { Link, NavLink } from 'react-router-dom'
 // ---- 数据 ----
 
 const PRINCIPLES = [
@@ -86,8 +86,10 @@ function Btn({
 function PrincipleCard({ title, description, index }: { title: string; description: string; index: number }) {
   return (
     <div className="group relative transition-all duration-500">
+      {/* 遮罩层 — hover 淡出 */}
+      <div className="absolute inset-0 bg-black/60 opacity-100 group-hover:opacity-0 transition-opacity duration-200"/>
       <img src={`/images/main_principleCard_${index}.png`} alt="" className="w-full" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-3 p-6 hover:bg-accent/50 transition-all duration-500">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-3 p-6">
         <h3 className="text-[clamp(26px,2.5vw,36px)] leading-[1.17] text-accent whitespace-pre-line ">
           {title}
         </h3>
@@ -268,6 +270,24 @@ export function HomePage() {
               
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-inner ">
+            <div className='grid grid-cols-1 md:grid-cols-2 py-[clamp(48px,5vw,80px)] md:pl-[clamp(48px,8.33vw,120px)] '>
+                <Link to="/archive" className=' '>
+                  <p className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)]'>The Vertebra</p>
+                  <div>First proof of a Tectonic Object. Indicative price and availability.</div>
+                </Link>
+                <Link to="/work" className=' '>
+                  <p className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)]'>The Work</p>
+                  <div>
+                  The argument behind the object.
+                  </div>
+                </Link>
+            </div>
+                
           </div>
         </section>
     </>

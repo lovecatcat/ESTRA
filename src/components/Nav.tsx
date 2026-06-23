@@ -5,7 +5,7 @@ export const NAV_LINKS = [
   { label: 'ARCHIVE', href: '/archive' },
   { label: 'THE WORK', href: '/work' },
   { label: 'ABOUT', href: '/about' },
-  { label: 'CONTACT', href: '/contact' },
+  // { label: 'CONTACT', href: '/contact' },
 ] as const
 
 export function Nav() {
