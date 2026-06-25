@@ -201,7 +201,7 @@ export function HomePage() {
 
         {/* ====== S2: 设计原则 ====== */}
         <section
-          className="section group aspect-[1440/842] relative bg-[url('/images/main_principles.png')] bg-cover bg-center bg-no-repeat flex items-center"
+          className="section group h-[50vh] md:aspect-[1440/842] md:h-auto relative bg-[url('/images/main_principles.png')] bg-cover bg-center bg-no-repeat flex items-center"
         >
           {/* 遮罩层 — hover 淡出 */}
           <div
