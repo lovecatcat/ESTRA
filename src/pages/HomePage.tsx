@@ -6,19 +6,19 @@ import { Link, NavLink } from 'react-router-dom'
 const PRINCIPLES = [
   {
     title: 'Industrial\nHonesty',
-    description: 'The structure is exposed. Nothing is hidden to pretend.',
+    description: 'The structure is exposed.\nThere is nothing to conceal.',
   },
   {
     title: 'Somatic\nRespect',
-    description: 'The body is not an obstacle. It is the starting point.',
+    description: 'The structure serves the body.\nPrecise to the eye.\nForgiving to the hand.',
   },
   {
     title: 'Binary\nTension',
-    description: 'Control and wildness\nexist in the same breath.',
+    description: 'The frame holds its form.\nThe leather receives time.',
   },
   {
     title: 'Sonic\nIdentity',
-    description: 'What you hear is the material speaking truthfully.',
+    description: 'Low. Certain. Resolved.\nThe sound is the making,\nmade audible.',
   },
 ]
 
@@ -36,11 +36,11 @@ const CASE_STUDIES = [
 ]
 
 const MANIFESTO = [
-  'We believe in the intelligence of materials, the honesty of construction, and the necessity of restraint.',
+  'Materials have a nature. We respect it and work with it.',
+  'The construction is honest. What is absent was decided as carefully as what remains.',
   'We work slowly so the object can remain honest.',
-  'We exist outside trends, outside seasons, outside commerce cycles.',
-  'We build for those who think in decades, not quarters.',
-  'This is not a brand. This is a position. This is not decoration. This is structure made visible.'
+  'We build for the decades on the horizon, not the season under our nose.',
+  'The work is the position. The structure is the evidence.'
 ]
 
 
@@ -160,18 +160,16 @@ export function HomePage() {
               <h1 className="text-[clamp(32px,3.47vw,50px)] text-accent leading-[1.08] ">
                 <span className="text-white relative inline-block before:absolute before:bottom-2 before:left-0 before:w-full before:h-0.5 before:bg-white before:translate-y-1">Structure</span>  is
                 <br />
-                the argument.
+                the evidence.
               </h1>
               <p className="text-[clamp(16px,1.67vw,24px)] text-[#E7DECB] leading-[1.08] ">
                 The frame first.
                 <br />
-                That is the discipline.
+                Everything else then emerges.
               </p>
 
               <p className="text-[clamp(16px,1.67vw,24px)] text-[#E7DECB] leading-[1.08] ">
-                The first proof of a
-                <br />
-                Tectonic Object.
+                The first Tectonic Object.
               </p>
             </div>
           </div>
@@ -189,11 +187,12 @@ export function HomePage() {
           {/* 文字居中 */}
           <div className="w-full flex flex-col items-center justify-center text-center px-6 py-8 bg-black/50">
             <h2 className="text-accent text-[clamp(24px,3.47vw,50px)] leading-[1.08]">
-              This is not <span className="text-white font-bold line-through">heavy</span>. This is dense.
+              The weight is not incidental.
             </h2>
             <p className="text-[clamp(14px,1.67vw,24px)] leading-[1.17] text-accent mt-4">
-              Density is presence — an object that carries its own reasons for being.
-              Every gram is a decision. You can feel the difference.
+              Every gram earned its place.
+              It is the substance in your hand.
+              Dense. Honest. Present.
             </p>
           </div>
         </section>
@@ -214,7 +213,8 @@ export function HomePage() {
                 The object finds the <span className='text-white font-bold'>people</span>  who were already living by its logic.
               </h2>
               <p className="text-[clamp(24px,2.8vw,40px)] leading-[1.17] text-accent max-w-[clamp(220px,25.35vw,365px)]">
-                This is not marketing. This is recognition.
+                Some will recognise it immediately. <br/>
+                That is enough.
               </p>
             </div>
             <div className="">
@@ -249,7 +249,7 @@ export function HomePage() {
               {/* 宣言文字 — 右 */}
               <div className="flex flex-col gap-6 order-1 md:order-2 md:pr-[clamp(48px,8.33vw,120px)] items-center md:items-start text-center md:text-left">
                 <div className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)] mt-[clamp(16px,1.53vw,24px)]'>
-                  We make objects that carry structure as their primary element and surface as their last decision.
+                  We make objects where structure comes first and surface comes last, justified by everything decided before it.
                 </div>
                 {MANIFESTO.map((line, i) => {
                   const isLast = i === MANIFESTO.length - 1
