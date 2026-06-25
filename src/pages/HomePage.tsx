@@ -85,7 +85,7 @@ function Btn({
 
 function PrincipleCard({ title, description, index }: { title: string; description: string; index: number }) {
   return (
-    <div className="shrink-0 snap-center w-[65vw] md:w-auto group transition-all duration-500">
+    <div className="shrink-0 snap-center w-[55vw] md:w-auto group transition-all duration-500">
       {/* 移动端：图片在上，文字在下 — 无遮罩 */}
       <div className="md:hidden flex flex-col">
         <img src={`/images/main_principleCard_${index}.png`} alt="" className="w-full" />
