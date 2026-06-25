@@ -85,17 +85,32 @@ function Btn({
 
 function PrincipleCard({ title, description, index }: { title: string; description: string; index: number }) {
   return (
-    <div className="group relative transition-all duration-500">
-      {/* 遮罩层 — hover 淡出 */}
-      <div className="absolute inset-0 bg-black/60 opacity-100 group-hover:opacity-0 transition-opacity duration-200"/>
-      <img src={`/images/main_principleCard_${index}.png`} alt="" className="w-full" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-3 p-6">
-        <h3 className="text-[clamp(26px,2.5vw,36px)] leading-[1.17] text-accent whitespace-pre-line ">
-          {title}
-        </h3>
-        <p className="text-[clamp(13px,1.25vw,18px)] leading-[1.17] text-accent whitespace-pre-line max-w-[clamp(120px,13.9vw,200px)] ">
-          {description}
-        </p>
+    <div className="shrink-0 snap-center w-[65vw] md:w-auto group transition-all duration-500">
+      {/* 移动端：图片在上，文字在下 — 无遮罩 */}
+      <div className="md:hidden flex flex-col">
+        <img src={`/images/main_principleCard_${index}.png`} alt="" className="w-full" />
+        <div className="flex flex-col items-center text-center gap-2 px-4 py-5 ">
+          <h3 className="text-[clamp(20px,5vw,26px)] leading-[1.17] text-accent whitespace-pre-line">
+            {title}
+          </h3>
+          <p className="text-[clamp(12px,3vw,16px)] leading-[1.17] text-accent-muted whitespace-pre-line">
+            {description}
+          </p>
+        </div>
+      </div>
+
+      {/* 桌面端：遮罩 + hover 淡出（保持原设计） */}
+      <div className="hidden md:block relative">
+        <div className="absolute inset-0 bg-black/60 opacity-100 group-hover:opacity-0 transition-opacity duration-200 z-10" />
+        <img src={`/images/main_principleCard_${index}.png`} alt="" className="w-full" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-3 p-6 z-20">
+          <h3 className="text-[clamp(26px,2.5vw,36px)] leading-[1.17] text-accent whitespace-pre-line">
+            {title}
+          </h3>
+          <p className="text-[clamp(13px,1.25vw,18px)] leading-[1.17] text-accent whitespace-pre-line max-w-[clamp(120px,13.9vw,200px)]">
+            {description}
+          </p>
+        </div>
       </div>
     </div>
   )
@@ -117,9 +132,9 @@ function CaseCard({
       <div className="mb-[clamp(24px,4.17vw,60px)] flex justify-center md:justify-start md:pl-[clamp(48px,8.33vw,120px)]">
         <ActLabel>{actLabel}</ActLabel>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[clamp(48px,8.33vw,120px)] md:pl-[clamp(48px,8.33vw,120px)] md:pr-[clamp(48px,8.33vw,120px)] items-end">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[clamp(48px,8.33vw,120px)] px-6 md:pl-[clamp(48px,8.33vw,120px)] md:pr-[clamp(48px,8.33vw,120px)] items-end">
         {/* 图片 — 左 */}
-        <div className="relative w-full h-full min-h-[clamp(200px,23.2vw,334px)] rounded-sm overflow-hidden border-4 border-accent md:order-1">
+        <div className="relative w-full aspect-square md:aspect-auto md:min-h-[clamp(200px,23.2vw,334px)] rounded-sm overflow-hidden border-4 border-accent md:order-1">
         </div>
         {/* 文字 — 右 */}
         <div className="flex flex-col gap-4 order-1 md:order-2 justify-between h-full items-center md:items-start text-center md:text-left">
@@ -152,23 +167,32 @@ export function HomePage() {
   return (
     <>
         {/* ====== S1: Hero ====== */}
-        <section
-          className="section aspect-[1440/730] relative bg-[url('/images/main_banner.png')] bg-cover bg-center bg-no-repeat">
-          <div className="section-inner relative h-full flex items-center">
-            <div className="mx-auto md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-center md:items-start text-center md:text-left gap-6">
+        <section className="section relative -mt-nav h-screen md:h-auto md:aspect-[1440/730] md:mt-0">
+          {/* 背景图片 — 移动端满屏，桌面端按比例 */}
+          <img
+            src="/images/main_banner.png"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+
+          {/* 移动端底部渐变遮罩 — 保证文字可读 */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:hidden" />
+
+          {/* 文字 — 移动端底部左对齐，桌面端垂直居中右对齐 */}
+          <div className="section-inner relative h-full flex items-end md:items-center pb-[clamp(40px,8vw,80px)] md:pb-0">
+            <div className="md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-start text-left gap-4 md:gap-6">
               <ActLabel>{'ACT 1\nOPENING'}</ActLabel>
-              <h1 className="text-[clamp(32px,3.47vw,50px)] text-accent leading-[1.08] ">
+              <h1 className="text-[clamp(32px,3.47vw,50px)] text-accent leading-[1.08]">
                 <span className="text-white relative inline-block before:absolute before:bottom-2 before:left-0 before:w-full before:h-0.5 before:bg-white before:translate-y-1">Structure</span>  is
                 <br />
                 the evidence.
               </h1>
-              <p className="text-[clamp(16px,1.67vw,24px)] text-[#E7DECB] leading-[1.08] ">
+              <p className="text-[clamp(16px,1.67vw,24px)] text-[#E7DECB] leading-[1.08]">
                 The frame first.
                 <br />
                 Everything else then emerges.
               </p>
-
-              <p className="text-[clamp(16px,1.67vw,24px)] text-[#E7DECB] leading-[1.08] ">
+              <p className="text-[clamp(16px,1.67vw,24px)] text-[#E7DECB] leading-[1.08]">
                 The first Tectonic Object.
               </p>
             </div>
@@ -197,8 +221,8 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* 原则卡片 */}
-        <div className="section-inner grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0">
+        {/* 原则卡片 — 移动端水平滑动，桌面端四列网格 */}
+        <div className="section-inner flex overflow-x-auto snap-x snap-mandatory gap-4 md:grid md:grid-cols-4 md:gap-0 scrollbar-hide">
           {PRINCIPLES.map((p, i) => (
             <PrincipleCard key={p.title} title={p.title} description={p.description} index={i + 1} />
           ))}

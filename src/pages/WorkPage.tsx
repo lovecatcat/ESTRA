@@ -69,12 +69,18 @@ export function WorkPage() {
   return (
     <>
       {/* ====== Hero ====== */}
-      <section className="section relative aspect-[1440/600] bg-[url('/images/work_banner.png')] bg-cover bg-center bg-no-repeat flex items-center overflow-visible">
-        <div className="section-inner relative">
-          <div className="mx-auto md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-center md:items-start text-center md:text-left max-w-[clamp(280px,23vw,334px)]">
+      <section className="section relative -mt-nav h-screen md:h-auto md:aspect-[1440/600] md:mt-0">
+        <img
+          src="/images/work_banner.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:hidden" />
+        <div className="section-inner relative h-full flex items-end md:items-center pb-[clamp(40px,8vw,80px)] md:pb-0">
+          <div className="md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-start text-left gap-4 md:gap-6">
             <ActLabel>{'SO\nARCHIVE\nREACTIVATION'}</ActLabel>
 
-            <h1 className="text-[clamp(36px,3.47vw,50px)] my-6 font-bold leading-[1.08] text-accent">
+            <h1 className="text-[clamp(36px,3.47vw,50px)] font-bold leading-[1.08] text-accent">
               The Work
             </h1>
 
@@ -82,7 +88,7 @@ export function WorkPage() {
               An archive of structural propositions.
             </p>
 
-            <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.17] text-accent mt-4">
+            <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.17] text-accent">
               It grows as each is proven.
             </p>
           </div>

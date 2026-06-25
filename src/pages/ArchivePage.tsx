@@ -6,25 +6,31 @@ export function ArchivePage() {
   return (
     <>
       {/* ====== Hero ====== */}
-      <section className="section relative aspect-[1440/600] bg-[url('/images/archive_banner.png')] bg-cover bg-center bg-no-repeat flex items-center">
-        <div className="section-inner relative h-full flex items-center">
-          <div className="mx-auto md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-center md:items-start text-center md:text-left gap-6">
-            <ActLabel color="bg-primary">{'SO\nARCHIVE\nREACTIVATION'}</ActLabel>
+      <section className="section relative -mt-nav h-screen md:h-auto md:aspect-[1440/600] md:mt-0">
+        <img
+          src="/images/archive_banner.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:hidden" />
+        <div className="section-inner relative h-full flex items-end md:items-center pb-[clamp(40px,8vw,80px)] md:pb-0">
+          <div className="md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-start text-left gap-6">
+            <ActLabel>{'SO\nARCHIVE\nREACTIVATION'}</ActLabel>
 
-            <h1 className="text-[clamp(36px,3.47vw,50px)] font-bold leading-[1.08] text-bg-primary">
+            <h1 className="text-[clamp(36px,3.47vw,50px)] font-bold leading-[1.08] text-accent">
               Archive
             </h1>
 
             <div>
-              <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.08] text-bg-primary">
+              <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.08] text-accent">
                 An archive of structural
               </p>
-              <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.08] text-bg-primary">
+              <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.08] text-accent">
                 propositions.
               </p>
             </div>
 
-            <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.08] text-bg-primary">
+            <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.08] text-accent">
               It grows as each is proven.
             </p>
           </div>

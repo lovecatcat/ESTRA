@@ -59,6 +59,15 @@
     color: #A9A294;
   }
 
+  /* 隐藏滚动条 */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   /* 渐变遮罩 */
   .mask-fade-b {
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
