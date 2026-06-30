@@ -1,4 +1,5 @@
 
+import { useRef, useState } from 'react'
 import { ActLabel } from '../components/ActLabel'
 import { Link, NavLink } from 'react-router-dom'
 // ---- 数据 ----
@@ -65,7 +66,7 @@ function Btn({
       ? 'border border-accent/40 text-accent hover:bg-accent hover:text-bg-primary active:bg-accent/90 transition-all duration-300'
       : 'text-accent hover:text-white hover:underline underline-offset-4 transition-all duration-200'
   const base =
-    'inline-flex items-center gap-2 px-5 py-2 text-sm font-medium tracking-wider uppercase cursor-pointer'
+    'inline-flex items-center gap-2 px-5 py-2 text-[clamp(12px,1.1vw,16px)] font-medium tracking-wider uppercase cursor-pointer'
 
   if (href) {
     return (
@@ -90,24 +91,24 @@ function PrincipleCard({ title, description, index }: { title: string; descripti
       <div className="md:hidden flex flex-col">
         <img src={`/images/main_principleCard_${index}.png`} alt="" className="w-full" />
         <div className="flex flex-col items-center text-center gap-2 px-4 py-5 ">
-          <h3 className="text-[clamp(20px,5vw,26px)] leading-[1.17] text-accent whitespace-pre-line">
+          <h3 className="text-[clamp(20px,2vw,28px)] leading-[1.17] text-accent whitespace-pre-line">
             {title}
           </h3>
-          <p className="text-[clamp(12px,3vw,16px)] leading-[1.17] text-accent-muted whitespace-pre-line">
+          <p className="text-[clamp(12px,1.1vw,16px)] leading-[1.17] text-accent-muted whitespace-pre-line">
             {description}
           </p>
         </div>
       </div>
 
       {/* 桌面端：遮罩 + hover 淡出（保持原设计） */}
-      <div className="hidden md:block relative">
+      <div className="hidden md:block relative aspect-square overflow-hidden">
         <div className="absolute inset-0 bg-black/60 opacity-100 group-hover:opacity-0 transition-opacity duration-200 z-10" />
-        <img src={`/images/main_principleCard_${index}.png`} alt="" className="w-full" />
+        <img src={`/images/main_principleCard_${index}.png`} alt="" className="w-full h-full object-cover" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-3 p-6 z-20">
-          <h3 className="text-[clamp(26px,2.5vw,36px)] leading-[1.17] text-accent whitespace-pre-line">
+          <h3 className="text-[clamp(20px,2vw,28px)] leading-[1.17] text-accent whitespace-pre-line">
             {title}
           </h3>
-          <p className="text-[clamp(13px,1.25vw,18px)] leading-[1.17] text-accent whitespace-pre-line max-w-[clamp(120px,13.9vw,200px)]">
+          <p className="text-[clamp(12px,1.1vw,16px)] leading-[1.17] text-accent whitespace-pre-line max-w-[clamp(120px,13.9vw,200px)]">
             {description}
           </p>
         </div>
@@ -129,10 +130,10 @@ function CaseCard({
 }) {
   return (
     <div className="group mb-24 md:mb-32">
-      <div className="mb-[clamp(24px,4.17vw,60px)] flex justify-center md:justify-start md:pl-[clamp(48px,8.33vw,120px)]">
+      <div className="mb-[clamp(24px,4.17vw,60px)] flex justify-center md:justify-start md:pl-[clamp(40px,8vw,80px)]">
         <ActLabel>{actLabel}</ActLabel>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[clamp(48px,8.33vw,120px)] px-6 md:pl-[clamp(48px,8.33vw,120px)] md:pr-[clamp(48px,8.33vw,120px)] items-end">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[clamp(40px,8vw,80px)] px-6 md:pl-[clamp(40px,8vw,80px)] md:pr-[clamp(40px,8vw,80px)] items-end">
         {/* 图片 — 左 */}
         <div className="relative w-full aspect-square md:aspect-auto md:min-h-[clamp(200px,23.2vw,334px)] rounded-sm overflow-hidden border-4 border-accent md:order-1">
         </div>
@@ -164,6 +165,24 @@ function CaseCard({
 // ================================================================
 
 export function HomePage() {
+  const principlesRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const handlePrinciplesScroll = () => {
+    const el = principlesRef.current
+    if (!el) return
+    const totalWidth = el.scrollWidth - el.clientWidth
+    if (totalWidth <= 0) return
+    const index = Math.round((el.scrollLeft / totalWidth) * (PRINCIPLES.length - 1))
+    setActiveIndex(index)
+  }
+
+  const scrollToPrinciple = (index: number) => {
+    const el = principlesRef.current
+    if (!el) return
+    const cardWidth = el.scrollWidth / PRINCIPLES.length
+    el.scrollTo({ left: cardWidth * index, behavior: 'smooth' })
+  }
   return (
     <>
         {/* ====== S1: Hero ====== */}
@@ -180,7 +199,7 @@ export function HomePage() {
 
           {/* 文字 — 移动端底部左对齐，桌面端垂直居中右对齐 */}
           <div className="section-inner relative h-full flex items-end md:items-center pb-[clamp(40px,8vw,80px)] md:pb-0">
-            <div className="md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-start text-left gap-4 md:gap-6">
+            <div className="md:ml-auto md:mr-[clamp(40px,8vw,80px)] flex flex-col items-start text-left gap-4 md:gap-6">
               <ActLabel>{'ACT 1\nOPENING'}</ActLabel>
               <h1 className="text-[clamp(32px,3.47vw,50px)] text-accent leading-[1.08]">
                 <span className="text-white relative inline-block before:absolute before:bottom-2 before:left-0 before:w-full before:h-0.5 before:bg-white before:translate-y-1">Structure</span>  is
@@ -222,16 +241,37 @@ export function HomePage() {
         </section>
 
         {/* 原则卡片 — 移动端水平滑动，桌面端四列网格 */}
-        <div className="section-inner flex overflow-x-auto snap-x snap-mandatory gap-4 md:grid md:grid-cols-4 md:gap-0 scrollbar-hide">
-          {PRINCIPLES.map((p, i) => (
-            <PrincipleCard key={p.title} title={p.title} description={p.description} index={i + 1} />
-          ))}
+        <div className="section-inner">
+          <div
+            ref={principlesRef}
+            className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:grid md:grid-cols-4 md:gap-0 scrollbar-hide"
+            onScroll={handlePrinciplesScroll}
+          >
+            {PRINCIPLES.map((p, i) => (
+              <PrincipleCard key={p.title} title={p.title} description={p.description} index={i + 1} />
+            ))}
+          </div>
+
+          {/* 移动端滑动指示器 */}
+          <div className="flex md:hidden justify-center gap-2 mt-[clamp(16px,2.5vw,24px)]">
+            {PRINCIPLES.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToPrinciple(index)}
+                className={`rounded-full transition-all duration-300 ${
+                  activeIndex === index
+                    ? 'w-6 h-1.5 bg-accent'
+                    : 'w-1.5 h-1.5 bg-accent/30'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* ====== S3: 对象自述 ====== */}
         <section className="section py-[clamp(48px,5vw,80px)] md:py-[clamp(80px,8vw,128px)]">
           <div className="section-inner grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
-            <div className="flex flex-col gap-6 md:pl-[clamp(48px,8.33vw,120px)] items-center md:items-start text-center md:text-left">
+            <div className="flex flex-col gap-6 md:pl-[clamp(40px,8vw,80px)] items-center md:items-start text-center md:text-left">
               <ActLabel>{'ACT 4\nTHE OBJECT FINDS\nITS PEOPLE'}</ActLabel>
               <h2 className="text-[clamp(24px,2.8vw,40px)] leading-[1.17] text-accent max-w-[clamp(280px,31.8vw,458px)]">
                 The object finds the <span className='text-white font-bold'>people</span>  who were already living by its logic.
@@ -241,7 +281,7 @@ export function HomePage() {
                 That is enough.
               </p>
             </div>
-            <div className="">
+            <div className="border-4 border-accent">
               <img src="/images/main_object.png" alt="" className="w-full" />
             </div>
 
@@ -261,7 +301,7 @@ export function HomePage() {
         {/* ====== S5: 文化宣言 ====== */}
         <section className="section ">
           <div className="section-inner">
-            <div className="mb-[clamp(24px,4.17vw,60px)] flex justify-center md:justify-start md:pl-[clamp(48px,8.33vw,120px)]">
+            <div className="mb-[clamp(24px,4.17vw,60px)] flex justify-center md:justify-start md:pl-[clamp(40px,8vw,80px)]">
               <ActLabel>{'ACT 4\nTHE CULTURAL\nSTATEMENT'}</ActLabel>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2">
@@ -271,17 +311,17 @@ export function HomePage() {
               </div>
 
               {/* 宣言文字 — 右 */}
-              <div className="flex flex-col gap-6 order-1 md:order-2 md:pr-[clamp(48px,8.33vw,120px)] items-center md:items-start text-center md:text-left">
-                <div className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)] mt-[clamp(16px,1.53vw,24px)]'>
+              <div className="flex flex-col gap-6 order-1 md:order-2 md:pr-[clamp(40px,8vw,80px)] items-center md:items-start text-center md:text-left">
+                <div className='text-accent leading-[1.17] text-[clamp(20px,2vw,28px)] mt-[clamp(16px,1.53vw,24px)]'>
                   We make objects where structure comes first and surface comes last, justified by everything decided before it.
                 </div>
                 {MANIFESTO.map((line, i) => {
                   const isLast = i === MANIFESTO.length - 1
                   return (
                     <div key={i} className="flex items-start gap-3 group">
-                      <div className={`mt-[0.55em] w-10 md:w-16 h-px shrink-0 ${isLast ? 'bg-transparent' : 'bg-accent'}`} />
+                      <div className={`mt-[0.55em] w-4 md:w-4 h-px shrink-0 ${isLast ? 'bg-transparent' : 'bg-accent'}`} />
                       <p
-                        className={`text-accent text-sm`}
+                        className={`text-accent text-[clamp(12px,1.1vw,16px)]`}
                       >
                         {line}
                       </p>
@@ -296,15 +336,25 @@ export function HomePage() {
 
         <section className="section">
           <div className="section-inner ">
-            <div className='flex justify-between py-[clamp(48px,5vw,80px)] md:px-[clamp(48px,8.33vw,120px)] '>
-                <Link to="/archive" className=' '>
-                  <p className='text-accent leading-[1.17] text-[clamp(16px,1.53vw,22px)]'>The Vertebra</p>
-                  <div className='text-sm'>First proof of a Tectonic Object. Indicative price and availability.</div>
+            <div className='flex justify-between py-[clamp(48px,5vw,80px)] md:px-[clamp(40px,8vw,80px)] '>
+                <Link to="/archive" className=' text-accent leading-[1.17]'>
+                  <p className='text-[clamp(20px,2vw,28px)] flex items-center gap-2 w-fit'>The Vertebra 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="15" viewBox="0 0 22 15" fill="none">
+              <line y1="6.95117" x2="20.8203" y2="6.95117" stroke="#DDD4C1" />
+              <path d="M15.0059 0.325195L20.6641 6.92505L15.0059 13.9962" stroke="#DDD4C1" />
+            </svg></p>
+                  <div className='text-[clamp(12px,1.1vw,16px)]'>First proof of a Tectonic Object. Indicative price and availability.</div>
                 </Link>
                 <div>
-                <Link to="/work" className=' '>
-                  <p className='text-accent leading-[1.17] text-base'>The Work</p>
-                  <div className='text-sm'>The argument behind the object.</div>
+                <Link to="/work" className='text-accent leading-[1.17]'>
+                  <p className='text-[clamp(20px,2vw,28px)] flex items-center gap-2 w-fit'>
+                    The Work
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="15" viewBox="0 0 22 15" fill="none">
+              <line y1="6.95117" x2="20.8203" y2="6.95117" stroke="#DDD4C1" />
+              <path d="M15.0059 0.325195L20.6641 6.92505L15.0059 13.9962" stroke="#DDD4C1" />
+            </svg>
+                  </p>
+                  <div className='text-[clamp(12px,1.1vw,16px)]'>The argument behind the object.</div>
                 </Link>
                 </div>
                

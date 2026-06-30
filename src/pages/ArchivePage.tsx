@@ -14,7 +14,7 @@ export function ArchivePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:hidden" />
         <div className="section-inner relative h-full flex items-end md:items-center pb-[clamp(40px,8vw,80px)] md:pb-0">
-          <div className="md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-start text-left gap-6">
+          <div className="md:ml-auto md:mr-[clamp(40px,8vw,80px)] flex flex-col items-start text-left gap-4 md:gap-6">
             <ActLabel>{'SO\nARCHIVE\nREACTIVATION'}</ActLabel>
 
             <h1 className="text-[clamp(36px,3.47vw,50px)] font-bold leading-[1.08] text-accent">
@@ -23,10 +23,7 @@ export function ArchivePage() {
 
             <div>
               <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.08] text-accent">
-                An archive of structural
-              </p>
-              <p className="text-[clamp(18px,1.67vw,24px)] leading-[1.08] text-accent">
-                propositions.
+                An archive of structural propositions.
               </p>
             </div>
 
@@ -39,7 +36,7 @@ export function ArchivePage() {
 
       {/* ====== Archive Grid ====== */}
       <section className="section py-[clamp(40px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[clamp(20px,2vw,40px)]">
             {ARCHIVE_ITEMS.map((item) => (
               <Link

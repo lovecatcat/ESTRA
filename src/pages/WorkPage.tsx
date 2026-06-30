@@ -77,7 +77,7 @@ export function WorkPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:hidden" />
         <div className="section-inner relative h-full flex items-end md:items-center pb-[clamp(40px,8vw,80px)] md:pb-0">
-          <div className="md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-start text-left gap-4 md:gap-6">
+          <div className="md:ml-auto md:mr-[clamp(40px,8vw,80px)] flex flex-col items-start text-left gap-4 md:gap-6">
             <ActLabel>{'SO\nARCHIVE\nREACTIVATION'}</ActLabel>
 
             <h1 className="text-[clamp(36px,3.47vw,50px)] font-bold leading-[1.08] text-accent">
@@ -96,10 +96,10 @@ export function WorkPage() {
       </section>
       {/* ====== S1: Company Statement ====== */}
       <section className="section py-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S1\nCOMPANY\nSTATEMENT'}</ActLabel>
 
-          <p className="text-[clamp(24px,2.9vw,42px)] leading-[1.17] text-accent text-center md:text-left">
+          <p className="text-[clamp(24px,2.5vw,36px)] leading-[1.17] text-accent text-center md:text-left">
             {STATEMENT}
           </p>
         </div>
@@ -109,7 +109,7 @@ export function WorkPage() {
 
       <section className="section py-[clamp(48px,5vw,80px)]">
 
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S2\nON\nSTRUCTURE'}</ActLabel>
           <ProjectGrid />
         </div>
@@ -117,7 +117,7 @@ export function WorkPage() {
 
       {/* ====== S3: Carriers ====== */}
       <section className="section py-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S3\nCARRIERS'}</ActLabel>
           <ProjectGrid />
         </div>

@@ -33,7 +33,7 @@ export function ContactPage() {
       </section>
 
       <section className="section ">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)] mt-[clamp(36px,3vw,48px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)] mt-[clamp(36px,3vw,48px)]">
           <div className="flex flex-col items-center md:items-start text-center md:text-left mx-auto md:mx-0">
             <ActLabel>{'S1\nCOMPANY\nSTATEMENT'}</ActLabel>
 
@@ -50,7 +50,7 @@ export function ContactPage() {
 
       {/* ====== Form ====== */}
       <section className="section py-[clamp(48px,5vw,80px)] mb-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <form
             className=" flex flex-col gap-[clamp(24px,2.5vw,36px)]"
             onSubmit={(e) => e.preventDefault()}

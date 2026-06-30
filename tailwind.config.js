@@ -23,7 +23,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Roboto', 'DM Sans', 'system-ui', 'sans-serif'],
+        sans: ['Geist', 'system-ui', 'sans-serif'],
         serif: ['Cormorant Garamond', 'Georgia', 'serif'],
       },
       fontSize: {

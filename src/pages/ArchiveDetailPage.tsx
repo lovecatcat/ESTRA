@@ -18,13 +18,16 @@ const EVIDENCE = [
   { title: 'Joinery', desc: 'Every connection\nis a decision.' },
   { title: 'Load\nPath', desc: 'Force flows.\nNothing is hidden.' },
   { title: 'Old/New\nDialogue', desc: 'The object enters\nexisting time.' },
+  { title: 'Old2/New\nDialogue', desc: 'The object enters\nexisting time.' },
 ]
 
 // ================================================================
 export function ArchiveDetailPage() {
   const { id } = useParams()
   const imageRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const el = imageRef.current
@@ -39,6 +42,22 @@ export function ArchiveDetailPage() {
 
   const handleMouseLeave = () => {
     setTilt({ x: 0, y: 0 })
+  }
+
+  const handleScroll = () => {
+    const el = scrollRef.current
+    if (!el) return
+    const totalWidth = el.scrollWidth - el.clientWidth
+    if (totalWidth <= 0) return
+    const index = Math.round((el.scrollLeft / totalWidth) * (EVIDENCE.length - 1))
+    setActiveIndex(index)
+  }
+
+  const scrollTo = (index: number) => {
+    const el = scrollRef.current
+    if (!el) return
+    const cardWidth = el.scrollWidth / EVIDENCE.length
+    el.scrollTo({ left: cardWidth * index, behavior: 'smooth' })
   }
 
   return (
@@ -57,7 +76,7 @@ export function ArchiveDetailPage() {
 
         {/* 右侧文字 */}
         <div className="section-inner relative">
-          <div className="mx-auto md:ml-auto md:mr-[clamp(48px,8.33vw,120px)] flex flex-col items-center md:items-start text-center md:text-left max-w-[clamp(280px,23vw,334px)]">
+          <div className="mx-auto md:ml-auto md:mr-[clamp(40px,8vw,80px)] flex flex-col items-center md:items-start text-center md:text-left max-w-[clamp(280px,23vw,334px)]">
             <ActLabel>{'001\nOBJECT\nIDENTITY'}</ActLabel>
 
             <h1 className="text-[clamp(36px,3.96vw,57px)] my-6 font-bold leading-[1.08] text-accent">
@@ -77,17 +96,17 @@ export function ArchiveDetailPage() {
 
       {/* ====== S1: Context Strip ====== */}
       <section className="section py-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(48px,5vw,80px)]">{'S1\nCONTEXT\nSTRIP'}</ActLabel>
 
           <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x text-white">
             {SPECS.map((spec, idx) => (
               <div key={spec.label}
                 className={`flex-1 flex flex-col justify-center py-[clamp(16px,2vw,24px)] md:py-0 md:px-[clamp(16px,2vw,32px)] first:pt-0 last:pb-0 first:md:pl-0 last:md:pr-0 text-center`} >
-                <p className="text-[clamp(16px,1.6vw,23px)] font-medium text-accent mb-1">
+                <p className="text-[clamp(16px,1.6vw,24px)] font-medium text-accent mb-1">
                   {spec.label}
                 </p>
-                <p className="text-[clamp(12px,1.25vw,18px)] text-accent whitespace-pre-line">
+                <p className="text-[clamp(12px,1.1vw,16px)] text-accent whitespace-pre-line">
                   {spec.value}
                 </p>
               </div>
@@ -98,10 +117,10 @@ export function ArchiveDetailPage() {
 
       {/* ====== S2: Object Statement ====== */}
       <section className="section py-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S2\nOBJECT\nSTATEMENT'}</ActLabel>
 
-          <div className="text-[clamp(24px,2.9vw,42px)] leading-[1.17] text-accent text-center md:text-left">
+          <div className="text-[clamp(24px,2.5vw,36px)] leading-[1.17] text-accent text-center md:text-left">
             <p>
               The{' '}
               <span className="font-medium text-white">Vertebra</span>
@@ -115,7 +134,7 @@ export function ArchiveDetailPage() {
 
       {/* ====== S3: A Closer Look ====== */}
       <section className="section py-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S3\nA CLOSER\nLOOK'}</ActLabel>
 
           <VideoPlayer
@@ -127,22 +146,42 @@ export function ArchiveDetailPage() {
 
       {/* ====== S4: Evidence of Structure ====== */}
       <section className="section py-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S4\nEVIDENCE\nOF STRUCTURE'}</ActLabel>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[clamp(16px,2vw,32px)]">
+          {/* 全断点横向滑动 */}
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-[clamp(12px,2vw,24px)] md:gap-[clamp(24px,2vw,32px)]"
+            onScroll={handleScroll}
+          >
             {EVIDENCE.map((item, index) => (
-              <div key={item.title} className="flex flex-col items-center text-center gap-[clamp(12px,1.5vw,24px)]">
+              <div key={item.title} className="shrink-0 w-[70vw] md:w-[calc((100%-96px)/4)] snap-center flex flex-col items-center text-center gap-[clamp(12px,1.5vw,24px)]">
                 <div className="w-full aspect-square border-4 border-accent bg-bg-card flex items-center justify-center">
                   <img src={`/images/main_principleCard_${index + 1}.png`} alt="" className="w-full" />
                 </div>
-                <p className="text-[clamp(20px,2vw,29px)] text-accent whitespace-pre-line leading-[1.17]">
+                <p className="text-[clamp(20px,2vw,28px)] text-accent whitespace-pre-line leading-[1.17]">
                   {item.title}
                 </p>
-                <p className="text-[clamp(11px,1.1vw,16px)] text-accent whitespace-pre-line leading-[1.17]">
+                <p className="text-[clamp(12px,1.1vw,16px)] text-accent whitespace-pre-line leading-[1.17]">
                   {item.desc}
                 </p>
               </div>
+            ))}
+          </div>
+
+          {/* 滑动指示器 — 圆点 */}
+          <div className="flex justify-center gap-2 mt-[clamp(16px,2.5vw,32px)]">
+            {EVIDENCE.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`rounded-full transition-all duration-300 ${
+                  activeIndex === index
+                    ? 'w-6 h-1.5 bg-accent'
+                    : 'w-1.5 h-1.5 bg-accent/30'
+                }`}
+              />
             ))}
           </div>
         </div>
@@ -150,14 +189,14 @@ export function ArchiveDetailPage() {
 
       {/* ====== S5: Specifications & Configuration ====== */}
       <section className="section py-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'S5\nSPECS &\nCONFIG'}</ActLabel>
 
           {/* PC 左右 / 手机 上下 */}
           <div className="flex flex-col md:flex-row gap-[clamp(32px,4vw,64px)]">
             {/* 左栏 — Specifications */}
             <div className="flex-1">
-              <p className="text-[clamp(18px,1.8vw,26px)] font-medium text-accent mb-[clamp(20px,2vw,32px)] text-center md:text-left">
+              <p className="text-[clamp(20px,2vw,28px)] font-medium text-accent mb-[clamp(20px,2vw,32px)] text-center md:text-left">
                 Specifications
               </p>
               <table className="w-full border-collapse">
@@ -171,10 +210,10 @@ export function ArchiveDetailPage() {
                     ['Interior', '[Interior specification]'],
                   ].map(([label, value]) => (
                     <tr key={label} className="border-b border-white/20">
-                      <td className="py-[clamp(10px,1vw,16px)] pr-[clamp(16px,2vw,32px)] text-xs text-accent/60 align-top text-center md:text-left">
+                      <td className="py-[clamp(10px,1vw,16px)] pr-[clamp(16px,2vw,32px)] text-[clamp(12px,1.1vw,16px)] text-accent/60 align-top text-center md:text-left">
                         {label}
                       </td>
-                      <td className="py-[clamp(10px,1vw,16px)] text-xs text-accent align-top text-center md:text-left">
+                      <td className="py-[clamp(10px,1vw,16px)] text-[clamp(12px,1.1vw,16px)] text-accent align-top text-center md:text-left">
                         {value}
                       </td>
                     </tr>
@@ -185,7 +224,7 @@ export function ArchiveDetailPage() {
 
             {/* 右栏 — Configuration */}
             <div className="flex-1">
-              <p className="text-[clamp(18px,1.8vw,26px)] font-medium text-accent mb-[clamp(20px,2vw,32px)] text-center md:text-left">
+              <p className="text-[clamp(20px,2vw,28px)] font-medium text-accent mb-[clamp(20px,2vw,32px)] text-center md:text-left">
                 Configuration
               </p>
               <table className="w-full border-collapse">
@@ -199,10 +238,10 @@ export function ArchiveDetailPage() {
                     ['Pending fields', 'Subject to final production confirmation'],
                   ].map(([label, value]) => (
                     <tr key={label} className="border-b border-white/20">
-                      <td className="py-[clamp(10px,1vw,16px)] pr-[clamp(16px,2vw,32px)] text-xs text-accent/60 align-top text-center md:text-left">
+                      <td className="py-[clamp(10px,1vw,16px)] pr-[clamp(16px,2vw,32px)] text-[clamp(12px,1.1vw,16px)] text-accent/60 align-top text-center md:text-left">
                         {label}
                       </td>
-                      <td className="py-[clamp(10px,1vw,16px)] text-xs text-accent align-top text-center md:text-left">
+                      <td className="py-[clamp(10px,1vw,16px)] text-[clamp(12px,1.1vw,16px)] text-accent align-top text-center md:text-left">
                         {value}
                       </td>
                     </tr>
@@ -213,7 +252,7 @@ export function ArchiveDetailPage() {
           </div>
 
           {/* Order 按钮 */}
-          <div className="mt-[clamp(36px,4vw,56px)] flex justify-center">
+          {/* <div className="mt-[clamp(36px,4vw,56px)] flex justify-center">
             <a
               href="/contact"
               className="inline-flex items-center gap-2 px-[clamp(32px,4vw,56px)] py-[clamp(14px,1.5vw,20px)] border border-accent text-[clamp(14px,1.2vw,18px)] text-accent font-medium hover:bg-accent hover:text-bg-primary transition-colors duration-300"
@@ -224,13 +263,13 @@ export function ArchiveDetailPage() {
                 <line x1="0" y1="3.5" x2="9" y2="3.5" stroke="currentColor" strokeWidth="1" />
               </svg>
             </a>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* ====== Bottom Navigation ====== */}
       <section className="section py-[clamp(48px,5vw,80px)]">
-        <div className="section-inner md:px-[clamp(48px,8.33vw,120px)]">
+        <div className="section-inner md:px-[clamp(40px,8vw,80px)]">
           <ActLabel className="mb-[clamp(36px,3vw,48px)]">{'OBJECT\nINDEX'}</ActLabel>
 
           <div className="flex flex-wrap gap-[clamp(12px,3vw,48px)]">
@@ -240,7 +279,7 @@ export function ArchiveDetailPage() {
                 to={`/archive/${item.number}`}
                 className="flex items-center gap-1 hover:bg-accent/5 transition-colors duration-300"
               >
-                <span className="text-sm text-accent leading-none tracking-tighter">
+                <span className="text-[clamp(12px,1.1vw,16px)] text-accent leading-none tracking-tighter">
                   {item.number}
                 </span>
                 <svg width="10" height="7" viewBox="0 0 10 7" fill="none" >

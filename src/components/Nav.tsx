@@ -25,7 +25,7 @@ export function Nav() {
               key={l.href}
               to={l.href}
               className={({ isActive }) =>
-                `text-sm leading-4 transition-colors duration-200 border-b ${
+                `text-[clamp(12px,1.1vw,16px)] leading-4 transition-colors duration-200 border-b ${
                   isActive
                     ? 'border-white'
                     : 'text-white hover:text-accent border-transparent'
@@ -61,7 +61,7 @@ export function Nav() {
               key={l.href}
               to={l.href}
               className={({ isActive }) =>
-                `text-sm tracking-wider py-2 transition-colors duration-200 border-b-2 ${
+                `text-[clamp(12px,1.1vw,16px)] tracking-wider py-2 transition-colors duration-200 border-b-2 ${
                   isActive
                     ? 'text-accent border-accent'
                     : 'text-white/80 hover:text-accent border-transparent'
