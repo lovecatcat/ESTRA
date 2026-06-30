@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom'
-import { ActLabel } from '../components/ActLabel'
+'use client'
+
+import Link from 'next/link'
+import { ActLabel } from '@/components/ActLabel'
 
 // ---- 数据 ----
 const PROJECTS = [
@@ -13,7 +15,7 @@ const STATEMENT = `ESTRA creates enduring objects where engineering and craftsma
 // ---- 项目卡片 ----
 function ProjectCard({ project, index }: { project: typeof PROJECTS[number]; index: number }) {
   return (
-    <Link key={project.id} to={`/work/${project.id}`} className="group block">
+    <Link key={project.id} href={`/work/${project.id}`} className="group block">
       <div className="relative aspect-[3/5] bg-bg-card border-4 border-accent overflow-hidden">
         <img
           src={`/images/work_card_${index + 1}.png`}
@@ -65,7 +67,7 @@ function ProjectGrid() {
 }
 
 // ================================================================
-export function WorkPage() {
+export default function WorkPage() {
   return (
     <>
       {/* ====== Hero ====== */}

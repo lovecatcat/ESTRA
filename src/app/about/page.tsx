@@ -1,4 +1,7 @@
-import { ActLabel } from '../components/ActLabel'
+'use client'
+
+import Link from 'next/link'
+import { ActLabel } from '@/components/ActLabel'
 
 // ---- 数据 ----
 const SPECS = [
@@ -9,7 +12,7 @@ const SPECS = [
   { label: 'STATUS',          value: 'Active Record' },
 ]
 
-export function AboutPage() {
+export default function AboutPage() {
   return (
     <>
       {/* ====== Hero ====== */}
@@ -48,7 +51,7 @@ export function AboutPage() {
 
           <div className="text-[clamp(24px,2.5vw,36px)] leading-[1.17] text-accent space-y-[clamp(24px,3vw,48px)] pr-0 md:pr-[clamp(24px,3vw,48px)] text-center md:text-left">
             <p><span className="font-medium text-white">ESTRA</span> {' '}
-            creates objects defined by structure, material, and permanence. 
+            creates objects defined by structure, material, and permanence.
             Designed and assembled in London, each piece combines precision-machined aluminium with full-grain leather to create products that feel architectural, tactile, and enduring.</p>
             <p>
               We believe the frame comes first.
@@ -64,7 +67,7 @@ export function AboutPage() {
           <ActLabel className="mb-[clamp(48px,5vw,80px)]">{'S1\nCONTEXT\nSTRIP'}</ActLabel>
 
           <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x text-white">
-            {SPECS.map((spec, idx) => (
+            {SPECS.map((spec) => (
               <div key={spec.label}
                 className={`flex-1 flex flex-col justify-center py-[clamp(16px,2vw,24px)] md:py-0 md:px-[clamp(16px,2vw,32px)] first:pt-0 last:pb-0 first:md:pl-0 last:md:pr-0 text-center`} >
                 <p className="text-[clamp(16px,1.6vw,24px)] font-medium text-accent mb-1">

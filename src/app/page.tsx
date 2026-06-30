@@ -1,7 +1,9 @@
+'use client'
 
 import { useRef, useState } from 'react'
-import { ActLabel } from '../components/ActLabel'
-import { Link, NavLink } from 'react-router-dom'
+import Link from 'next/link'
+import { ActLabel } from '@/components/ActLabel'
+
 // ---- 数据 ----
 
 const PRINCIPLES = [
@@ -41,9 +43,8 @@ const MANIFESTO = [
   'The construction is honest. What is absent was decided as carefully as what remains.',
   'We work slowly so the object can remain honest.',
   'We build for the decades on the horizon, not the season under our nose.',
-  'The work is the position. The structure is the evidence.'
+  'The work is the position. The structure is the evidence.',
 ]
-
 
 function Hairline({ width = '200px', className = '' }: { width?: string; className?: string }) {
   return <div className={`hairline ${className}`} style={{ maxWidth: width }} />
@@ -164,7 +165,7 @@ function CaseCard({
 // 页面主体
 // ================================================================
 
-export function HomePage() {
+export default function HomePage() {
   const principlesRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -328,7 +329,7 @@ export function HomePage() {
                     </div>
                   )
                 })}
-              
+
               </div>
             </div>
           </div>
@@ -337,8 +338,8 @@ export function HomePage() {
         <section className="section">
           <div className="section-inner ">
             <div className='flex justify-between py-[clamp(48px,5vw,80px)] md:px-[clamp(40px,8vw,80px)] '>
-                <Link to="/archive" className=' text-accent leading-[1.17]'>
-                  <p className='text-[clamp(20px,2vw,28px)] flex items-center gap-2 w-fit'>The Vertebra 
+                <Link href="/archive" className=' text-accent leading-[1.17]'>
+                  <p className='text-[clamp(20px,2vw,28px)] flex items-center gap-2 w-fit'>The Vertebra
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="15" viewBox="0 0 22 15" fill="none">
               <line y1="6.95117" x2="20.8203" y2="6.95117" stroke="#DDD4C1" />
               <path d="M15.0059 0.325195L20.6641 6.92505L15.0059 13.9962" stroke="#DDD4C1" />
@@ -346,7 +347,7 @@ export function HomePage() {
                   <div className='text-[clamp(12px,1.1vw,16px)]'>First proof of a Tectonic Object. Indicative price and availability.</div>
                 </Link>
                 <div>
-                <Link to="/work" className='text-accent leading-[1.17]'>
+                <Link href="/work" className='text-accent leading-[1.17]'>
                   <p className='text-[clamp(20px,2vw,28px)] flex items-center gap-2 w-fit'>
                     The Work
                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="15" viewBox="0 0 22 15" fill="none">
@@ -357,9 +358,9 @@ export function HomePage() {
                   <div className='text-[clamp(12px,1.1vw,16px)]'>The argument behind the object.</div>
                 </Link>
                 </div>
-               
+
             </div>
-                
+
           </div>
         </section>
     </>

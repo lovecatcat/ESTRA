@@ -9,41 +9,45 @@ ESTRA 品牌官网 — 深色编辑风格单页应用，强调"结构即论点"�
 ## 常用命令
 
 ```bash
-npm run dev        # 启动开发服务器 (Vite)
-npm run build      # 类型检查 + 生产构建 (tsc && vite build)
-npm run preview    # 预览生产构建
+npm run dev        # 启动开发服务器 (Next.js)
+npm run build      # 生产构建 (next build)
+npm run start      # 启动生产服务器
 ```
 
 ## 技术栈
 
-- **构建工具**: Vite 5 + TypeScript 5
-- **框架**: React 18 + React Router v7
+- **框架**: Next.js 14 + React 18 (App Router)
 - **样式**: Tailwind CSS 3 + PostCSS + Autoprefixer
-- **字体**: Roboto (Google Fonts, 300/400/500/700)
+- **字体**: Geist (Google Fonts, 300/400/500/700)
 
 ## 项目结构
 
 ```
 src/
-├── main.tsx              # 入口，挂载 React 到 #root
-├── App.tsx               # BrowserRouter + 路由定义
-├── index.css             # Tailwind 指令 + 全局样式 + 组件层样式
+├── app/                  # Next.js App Router
+│   ├── layout.tsx        # 根布局 (Nav + Footer + 全局样式)
+│   ├── page.tsx          # 首页 (/)
+│   ├── globals.css       # Tailwind 指令 + 全局样式 + 组件层样式
+│   ├── about/page.tsx
+│   ├── archive/
+│   │   ├── page.tsx
+│   │   └── [id]/page.tsx
+│   ├── contact/page.tsx
+│   └── work/
+│       ├── page.tsx
+│       └── [id]/page.tsx
 ├── components/
-│   ├── Layout.tsx        # Nav + <Outlet /> + Footer 布局
 │   ├── Nav.tsx           # 固定顶部导航，含桌面/移动端响应式
-│   └── Footer.tsx        # 页脚，复用 Nav 中的 NAV_LINKS
-└── pages/
-    ├── HomePage.tsx      # 首页 — Hero/原则/案例/宣言 5 段式布局
-    ├── AboutPage.tsx
-    ├── ArchivePage.tsx
-    ├── ArchiveDetailPage.tsx
-    ├── ContactPage.tsx
-    └── WorkPage.tsx
+│   ├── Footer.tsx        # 页脚，复用 Nav 中的 NAV_LINKS
+│   ├── ActLabel.tsx      # Act 标签组件
+│   └── VideoPlayer.tsx   # 视频播放器组件
+└── data/
+    └── archive.ts        # Archive 数据
 ```
 
 ## 路由结构
 
-所有页面嵌套在 `<Layout />` 下（共享 Nav + Footer）：
+App Router 文件系统路由，所有页面共享根布局（Nav + Footer）：
 
 | 路径 | 页面 |
 |------|------|

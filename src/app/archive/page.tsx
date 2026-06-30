@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom'
-import { ActLabel } from '../components/ActLabel'
-import { ARCHIVE_ITEMS } from '../data/archive'
+'use client'
 
-export function ArchivePage() {
+import Link from 'next/link'
+import { ActLabel } from '@/components/ActLabel'
+import { ARCHIVE_ITEMS } from '@/data/archive'
+
+export default function ArchivePage() {
   return (
     <>
       {/* ====== Hero ====== */}
@@ -41,7 +43,7 @@ export function ArchivePage() {
             {ARCHIVE_ITEMS.map((item) => (
               <Link
                 key={item.number}
-                to={`/archive/${item.number}`}
+                href={`/archive/${item.number}`}
                 className="relative aspect-square border-4 border-accent flex items-center justify-center p-[clamp(24px,4vw,48px)] hover:bg-accent/10 transition-colors duration-300"
               >
                 <div className="flex items-start justify-center">

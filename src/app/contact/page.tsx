@@ -1,5 +1,7 @@
+'use client'
+
 import { useState } from 'react'
-import { ActLabel } from '../components/ActLabel'
+import { ActLabel } from '@/components/ActLabel'
 
 // ---- 数据 ----
 const SERVICES = [
@@ -12,7 +14,7 @@ const SERVICES = [
 ]
 
 // ================================================================
-export function ContactPage() {
+export default function ContactPage() {
   const [selectedServices, setSelectedServices] = useState<string[]>([])
 
   const toggleService = (service: string) => {

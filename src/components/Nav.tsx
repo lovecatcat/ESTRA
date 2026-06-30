@@ -1,5 +1,8 @@
+'use client'
+
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export const NAV_LINKS = [
   { label: 'ARCHIVE', href: '/archive' },
@@ -10,30 +13,31 @@ export const NAV_LINKS = [
 
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (href: string) => pathname === href
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-nav bg-bg-primary/90 backdrop-blur-sm border-b border-border">
       <div className="section-inner flex items-center justify-between h-full px-[clamp(16px,4vw,80px)]">
-        <Link to="/" className="text-[clamp(18px,1.67vw,24px)] font-medium text-white tracking-wide hover:text-accent transition-colors duration-300">
+        <Link href="/" className="text-[clamp(18px,1.67vw,24px)] font-medium text-white tracking-wide hover:text-accent transition-colors duration-300">
           ESTRA
         </Link>
 
         {/* 导航链接 — 仅桌面端显示 */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((l) => (
-            <NavLink
+            <Link
               key={l.href}
-              to={l.href}
-              className={({ isActive }) =>
-                `text-[clamp(12px,1.1vw,16px)] leading-4 transition-colors duration-200 border-b ${
-                  isActive
-                    ? 'border-white'
-                    : 'text-white hover:text-accent border-transparent'
-                }`
-              }
+              href={l.href}
+              className={`text-[clamp(12px,1.1vw,16px)] leading-4 transition-colors duration-200 border-b ${
+                isActive(l.href)
+                  ? 'border-white'
+                  : 'text-white hover:text-accent border-transparent'
+              }`}
             >
               {l.label}
-            </NavLink>
+            </Link>
           ))}
         </div>
 
@@ -57,20 +61,18 @@ export function Nav() {
       >
         <div className="section-inner py-4 flex flex-col gap-3 px-[clamp(16px,4vw,80px)]">
           {NAV_LINKS.map((l) => (
-            <NavLink
+            <Link
               key={l.href}
-              to={l.href}
-              className={({ isActive }) =>
-                `text-[clamp(12px,1.1vw,16px)] tracking-wider py-2 transition-colors duration-200 border-b-2 ${
-                  isActive
-                    ? 'text-accent border-accent'
-                    : 'text-white/80 hover:text-accent border-transparent'
-                }`
-              }
+              href={l.href}
+              className={`text-[clamp(12px,1.1vw,16px)] tracking-wider py-2 transition-colors duration-200 border-b-2 ${
+                isActive(l.href)
+                  ? 'text-accent border-accent'
+                  : 'text-white/80 hover:text-accent border-transparent'
+              }`}
               onClick={() => setMenuOpen(false)}
             >
               {l.label}
-            </NavLink>
+            </Link>
           ))}
         </div>
       </div>

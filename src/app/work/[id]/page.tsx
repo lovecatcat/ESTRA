@@ -1,6 +1,8 @@
+'use client'
+
 import { useRef, useState } from 'react'
-import { ActLabel } from '../components/ActLabel'
-import { VideoPlayer } from '../components/VideoPlayer'
+import { ActLabel } from '@/components/ActLabel'
+import { VideoPlayer } from '@/components/VideoPlayer'
 
 // ---- 数据 ----
 const SPECS = [
@@ -18,13 +20,10 @@ const EVIDENCE = [
   { title: 'Time\nPresence', desc: 'The object enters\nexisting time.' },
   { title: 'Time2\nPresence', desc: 'The object enters\nexisting time.' },
   { title: 'Time3\nPresence', desc: 'The object enters\nexisting time.' },
-   
-
 ]
 
-
 // ================================================================
-export function WorkDetailPage() {
+export default function WorkDetailPage() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -154,10 +153,6 @@ export function WorkDetailPage() {
           </div>
         </div>
       </section>
-
-
-
-
     </>
   )
 }

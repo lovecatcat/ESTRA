@@ -1,8 +1,11 @@
+'use client'
+
 import { useRef, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { ActLabel } from '../components/ActLabel'
-import { VideoPlayer } from '../components/VideoPlayer'
-import { ARCHIVE_ITEMS } from '../data/archive'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import { ActLabel } from '@/components/ActLabel'
+import { VideoPlayer } from '@/components/VideoPlayer'
+import { ARCHIVE_ITEMS } from '@/data/archive'
 
 // ---- 数据 ----
 const SPECS = [
@@ -22,8 +25,8 @@ const EVIDENCE = [
 ]
 
 // ================================================================
-export function ArchiveDetailPage() {
-  const { id } = useParams()
+export default function ArchiveDetailPage() {
+  const { id } = useParams<{ id: string }>()
   const imageRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
@@ -276,7 +279,7 @@ export function ArchiveDetailPage() {
             {ARCHIVE_ITEMS.filter((item) => item.number !== id).map((item) => (
               <Link
                 key={item.number}
-                to={`/archive/${item.number}`}
+                href={`/archive/${item.number}`}
                 className="flex items-center gap-1 hover:bg-accent/5 transition-colors duration-300"
               >
                 <span className="text-[clamp(12px,1.1vw,16px)] text-accent leading-none tracking-tighter">
